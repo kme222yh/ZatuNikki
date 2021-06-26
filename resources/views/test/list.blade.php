@@ -37,15 +37,28 @@
 
             <div class="content">
                 <div class="content-body">
-                    <div class="otherarticles">
-                        <div class="otherarticles-body">
-                            @for ($i = 0; $i < 7; $i++)
-                            <div class="otherarticles-row">
-                                @for ($j = 0; $j < 3; $j++)
-                                <article class="otherarticles-item">
-                                    <a href="/article"></a>
-                                </article>
-                                @endfor
+                    <div class="articlelist">
+                        <div class="articlelist-body">
+                            @for ($i = 0; $i < 3; $i++)
+                            <div class="articlelist-year">
+                                <span class="articlelist-year-head">2021年</span>
+                                <ul class="articlelist-year-body">
+                                    @for ($j = 0; $j < 5; $j++)
+                                    <li class="articlelist-month">
+                                        <span class="articlelist-month-head">5月</span>
+                                        <ul class="articlelist-month-body">
+                                            @for ($a = 0; $a < 6; $a++)
+                                            <li class="articlelist-date">
+                                                <a class="articlelist-date-body" href="/article">
+                                                    <span class="articlelist-date-head">4日</span>
+                                                    <span class="articlelist-date-title">タイトルタイトルタイトルタイトルタイトルタイトル</span>
+                                                </a>
+                                            </li>
+                                            @endfor
+                                        </ul>
+                                    </li>
+                                    @endfor
+                                </ul>
                             </div>
                             @endfor
                         </div>

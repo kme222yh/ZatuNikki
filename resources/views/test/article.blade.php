@@ -12,8 +12,11 @@
     <body>
 
         <header>
-            <h1 class="app-title">ざつにっき</h1>
+            <h1 class="app-title">
+                <a href="/">ざつにっき</a>
+            </h1>
             <div class="account-menu">
+                <a class="about" href="/about">ざつにっきとは</a>
                 <a class="login" href="/login">ログイン</a>
                 <a class="register" href="/register">はじめる</a>
             </div>
