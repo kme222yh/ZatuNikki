@@ -8,7 +8,7 @@
                 {{ $diary->date }}
             </span>
             <p class="diarydetail-content">
-                {{ $diary->contents }}
+                {!! nl2br(e($diary->contents)) !!}
             </p>
         </div>
     </div>
