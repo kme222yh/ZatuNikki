@@ -1,5 +1,6 @@
 <template>
     <div class="editor">
+        <p class="e-d-t-date">{{diary.date}}</p>
         <div class="editor-body">
             <input class="editor-title" type="text" name="" v-model="diary.title" placeholder="日記タイトル(空の場合は日付が入ります)">
             <textarea class="editor-content" name="name" v-model="diary.contents" placeholder="日記を書きましょう！"></textarea>
@@ -125,15 +126,8 @@
             sending: false,
         }),
         mounted(){
-            if(this.diary_str){
-                this.diary = JSON.parse(this.diary_str);
-            } else {
-                this.diary = {
-                    title: '',
-                    contents: '',
-                    published: '',
-                }
-            }
+            this.diary = JSON.parse(this.diary_str);
+            console.log(this.diary_str);
         },
         methods: {
             togglePublish: function(){
@@ -147,6 +141,7 @@
                 this.sending = true;
                 const url = this.api;
                 const param = this.diary;
+                console.log(param)
                 axios.post(url, param).then(res=>{
 
                 }).finally(()=>{

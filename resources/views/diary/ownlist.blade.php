@@ -19,7 +19,7 @@
                                 <li class="owndiarylist-date">
                                     <a class="owndiarylist-date-body" href="{{ route('view', ['diary'=>$diaries[$i]->id]) }}">
                                         <span class="owndiarylist-date-head">{{ $date->day }}日</span>
-                                        <span class="owndiarylist-date-title">{{ $diaries[$i]->title }}</span>
+                                        <span class="owndiarylist-date-title">{{ $diaries[$i]->getTitle() }}</span>
                                     </a>
                                 </li>
                                 @php

@@ -2,10 +2,10 @@
     <div class="diarydetail">
         <div class="diarydetail-body">
             <h2 class="diarydetail-title">
-                {{ $diary->title }}
+                {{ $diary->getTitle() }}
             </h2>
             <span class="diarydetail-date">
-                {{ $diary->created_at }}
+                {{ $diary->date }}
             </span>
             <p class="diarydetail-content">
                 {{ $diary->contents }}

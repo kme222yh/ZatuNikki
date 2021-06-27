@@ -29,7 +29,7 @@ class DiaryFactory extends Factory
             'title' => "タイトルタイトルタイトル",
             'contents' => 'これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容これは内容',
             'published' => $this->faker->boolean(50),
-            'created_at' => Carbon::now()->addDay(-$this->i++)
+            'date' => Carbon::now()->addDay(-$this->i++)
         ];
     }
 }

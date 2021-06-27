@@ -27,6 +27,8 @@ Route::get('/write/edit/{diary}', [MyDiaryController::class, 'edit'])->middlewar
 
 Route::post('/api/diary/save', [MyDiaryController::class, 'save'])->middleware(['auth'])->name('api.save');
 
+Route::get('/delete/{diary}', [MyDiaryController::class, 'delete'])->middleware(['auth'])->name('delete');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

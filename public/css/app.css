@@ -75,6 +75,13 @@
   line-height: 3;
   overflow-wrap: break-word;
 }
+.e-d-t-date {
+  max-width: 710px;
+  display: block;
+  margin: 0 auto;
+  color: #7B7B7B;
+  font-size: 25px;
+}
 .owndiarylist li {
   list-style: none;
 }

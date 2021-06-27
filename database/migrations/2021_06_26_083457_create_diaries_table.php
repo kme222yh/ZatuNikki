@@ -15,8 +15,9 @@ class CreateDiariesTable extends Migration
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->char('title', 255)->nullable();
-            $table->string('contents');
+            $table->longText('contents');
             $table->boolean('published')->default(false);
             $table->timestamps();
 

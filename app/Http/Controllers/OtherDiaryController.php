@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use \App\Models\Diary;
+use Carbon\Carbon;
 
 class OtherDiaryController extends Controller
 {
@@ -19,7 +20,7 @@ class OtherDiaryController extends Controller
 
     public function diary(Request $request, Diary $diary){
         if($diary->published){
-            return view('diary.view', ["diary" => $diary,]);
+            return view('diary.view', ["diary" => $diary, "date" => (new Carbon($diary->date))->format('Y/m/d')]);
         } elseif($request->user() && $diary->user_id == $request->user()->id) {
             return view('diary.view', ["diary" => $diary,]);
         }

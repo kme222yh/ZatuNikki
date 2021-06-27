@@ -24,9 +24,9 @@ class DiaryEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
             'contents' => 'required',
             'published' => 'required',
+            'date' => 'date',
         ];
     }
 }

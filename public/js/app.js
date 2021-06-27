@@ -3916,6 +3916,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     api: '',
@@ -3931,15 +3932,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    if (this.diary_str) {
-      this.diary = JSON.parse(this.diary_str);
-    } else {
-      this.diary = {
-        title: '',
-        contents: '',
-        published: ''
-      };
-    }
+    this.diary = JSON.parse(this.diary_str);
+    console.log(this.diary_str);
   },
   methods: {
     togglePublish: function togglePublish() {
@@ -3956,6 +3950,7 @@ __webpack_require__.r(__webpack_exports__);
       this.sending = true;
       var url = this.api;
       var param = this.diary;
+      console.log(param);
       axios.post(url, param).then(function (res) {})["finally"](function () {
         _this.sending = false;
       });
@@ -22306,6 +22301,8 @@ var render = function() {
     "div",
     { staticClass: "editor" },
     [
+      _c("p", { staticClass: "e-d-t-date" }, [_vm._v(_vm._s(_vm.diary.date))]),
+      _vm._v(" "),
       _c("div", { staticClass: "editor-body" }, [
         _c("input", {
           directives: [

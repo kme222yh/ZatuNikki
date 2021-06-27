@@ -16,8 +16,10 @@ class MyDiaryController extends Controller
         if($diary){
             return redirect()->route('write.edit', ['diary' => $diary->id]);
         } else {
+            $diary = new Diary();
+            $diary->setDefault();
             return view('diary.edit', [
-                "diary" => $diary ?? Null,
+                "diary" => $diary,   // 連想配列の雛形が欲しい
             ]);
         }
     }
@@ -30,14 +32,13 @@ class MyDiaryController extends Controller
             abort(404);
         } else {
             return view('diary.edit', [
-                "diary" => $diary ?? Null,
+                "diary" => $diary,
             ]);
         }
     }
 
 
 
-    // 要求されたdiaryの持ち主がユーザーと一致するかどうかだけを判断
     public function list(Request $request){
         $diaries = $request->user()->diaries()->get();
         for($i=0; $i<count($diaries); $i++){
@@ -71,11 +72,24 @@ class MyDiaryController extends Controller
             $diary = new Diary();
             if($request->user()->diaries()->whereDate('created_at', Carbon::today())->first()){return response(400);}
         }
-        $diary->title = $validated['title'];
+        $diary->title = $request->title;
         $diary->contents = $validated['contents'];
         $diary->published = $validated['published'];
+        $diary->date = $validated['date'];
         $diary->user_id = $request->user()->id;
         $diary->save();
         return response(200);
     }
+
+
+    public function delete(Diary $diary, Request $request){
+        if($diary->user_id != $request->user()->id){
+            // abort(404);
+            return redirect()->route('home');
+        } else {
+            $diary->delete();
+            return redirect()->route('view.list');
+        }
+    }
+
 }
