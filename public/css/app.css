@@ -241,7 +241,7 @@ main .content-body {
   background-color: #F7C9A8;
 }
 .guest .mainvisual {
-  width: 50%;
+  width: 45%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -252,7 +252,11 @@ main .content-body {
 }
 .guest .mainvisual h1 {
   font-size: 60px;
-  color: white;
+  color: #FFF7EF;
+}
+.guest .mainvisual a {
+  color: #FFF7EF;
+  text-decoration: none;
 }
 .guest .content-body {
   height: 100%;
@@ -327,4 +331,15 @@ main .content-body {
 }
 .guest .authform-button:hover {
   background-color: #E68E50;
+}
+.guest .error {
+  margin-left: 80px;
+  padding: 30px 40px;
+  width: 100%;
+}
+.guest .error-message {
+  font-size: 50px;
+  line-height: 1.5;
+  color: #FFF7EF;
+  padding-left: 15px;
 }

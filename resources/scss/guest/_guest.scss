@@ -17,7 +17,7 @@
     }
 
     .mainvisual{
-        width: 50%;
+        width: 45%;
         height: 100%;
 
         @include flex;
@@ -26,7 +26,11 @@
 
         h1{
             font-size: 60px;
-            color: white;
+            color: $body-bg;
+        }
+        a{
+            color: $body-bg;
+            text-decoration: none;
         }
     }
 
@@ -111,6 +115,20 @@
                 background-color: $sub-color;
             }
             cursor: pointer;
+        }
+    }
+
+
+
+    .error{
+        margin-left: 80px;
+        padding: 30px 40px;
+        width: 100%;
+        &-message{
+            font-size: 50px;
+            line-height: 1.5;
+            color: $body-bg;
+            padding-left: 15px;
         }
     }
 

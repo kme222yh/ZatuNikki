@@ -27,7 +27,7 @@ class MyDiaryController extends Controller
     // 要求されたdiaryの持ち主がユーザーと一致するかどうかだけを判断
     public function edit(Request $request, Diary $diary){
         if($diary->user_id != $request->user()->id){
-            return redirect(RouteServiceProvider::HOME);
+            abort(404);
         } else {
             return view('diary.edit', [
                 "diary" => $diary ?? Null,
@@ -60,12 +60,12 @@ class MyDiaryController extends Controller
 
     public function save(DiaryEditRequest $request){
         if(!$request->user()){  // ユーザー判定
-            return response(400);
+            return response(404);
         }
         $validated = $request->validated();
         if($request->id){
             $diary = Diary::find($request->id);
-            if(!$diary){return response(400);}
+            if(!$diary){return response(404);}
             if($diary->user_id != $request->user()->id){return response(400);}
         } else {
             $diary = new Diary();

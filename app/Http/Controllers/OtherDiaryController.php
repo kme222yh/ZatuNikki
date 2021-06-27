@@ -20,10 +20,9 @@ class OtherDiaryController extends Controller
     public function diary(Request $request, Diary $diary){
         if($diary->published){
             return view('diary.view', ["diary" => $diary,]);
-        } elseif($diary->user_id == $request->user()->id) {
+        } elseif($request->user() && $diary->user_id == $request->user()->id) {
             return view('diary.view', ["diary" => $diary,]);
-        } else {
-            return redirect(RouteServiceProvider::HOME);
         }
+        abort(404);
     }
 }
