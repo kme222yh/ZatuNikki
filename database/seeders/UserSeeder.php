@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'wordpress',
-            'email' => 'wordpress@gmail.com',
+            'email' => 'hoge@gmail.com',
             'password' => Hash::make('wordpress'),
         ]);
     }

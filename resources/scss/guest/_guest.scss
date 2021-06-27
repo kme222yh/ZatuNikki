@@ -1,0 +1,117 @@
+.guest{
+
+    header{
+        justify-content: flex-end;
+
+        .navigation{
+            &-item{
+                width: 160px;
+            }
+        }
+    }
+
+    main{
+        box-sizing: border-box;
+        border-top: 3px solid $body-bg;
+        background-color: $main-color;
+    }
+
+    .mainvisual{
+        width: 50%;
+        height: 100%;
+
+        @include flex;
+        justify-content: flex-end;
+        height: 100%;
+
+        h1{
+            font-size: 60px;
+            color: white;
+        }
+    }
+
+
+    .content{
+        &-body{
+            height: 100%;
+            padding: 0;
+
+            @include flex;
+            justify-content: flex-start;
+        }
+    }
+
+
+
+    .validation-errors{
+        margin-bottom: 35px;
+        font-size: 15px;
+        line-height: 1.5;
+        padding-left: 15px;
+        &-head{
+            color: #7B7B7B;
+        }
+        &-item{
+            list-style: none;
+            color: #FA7575;
+        }
+
+    }
+
+
+
+    .authform{
+        margin-left: 80px;
+        border: 3px solid $body-bg;
+        border-radius: 7px;
+        padding: 30px 40px;
+        width: 100%;
+        max-width: 415px;
+        &-head{
+            font-size: 25px;
+            line-height: 28px;
+            color: $body-bg;
+            margin-bottom: 35px;
+            padding-left: 15px;
+        }
+        &-item{
+            label, input{
+                color: #7B7B7B;
+                font-size: 15px;
+                line-height: 35px;
+            }
+            label{
+                margin-bottom: 10px;
+                display: block;
+                padding-left: 15px;
+            }
+            input{
+                width: 100%;
+                height: 60px;
+                border-radius: 7px;
+                outline: none;
+                border: none;
+                margin-bottom: 25px;
+                background-color: white;
+                box-sizing: border-box;
+                padding: 30px 15px;
+            }
+        }
+        &-button{
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            background-color: $sub-sub-color;
+            border-radius: 7px;
+            height: 45px;
+            margin-top: 35px;
+            font-size: 15px;
+            color: $body-bg;
+            @include hover{
+                background-color: $sub-color;
+            }
+            cursor: pointer;
+        }
+    }
+
+}
