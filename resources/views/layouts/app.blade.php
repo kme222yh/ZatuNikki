@@ -3,34 +3,43 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <title>{{ config('app.name') }}</title>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <body>
+        <header>
+            <h1 class="app-title">
+                <a href="/">ざつにっき</a>
+            </h1>
+            @include('layouts.nav')
+        </header>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+
+
+
+        <main id="app">
+
+            @include('layouts.sidenav')
+
+            <div class="content">
+                <div class="content-body">
+                    {{ $slot }}
                 </div>
-            </header>
+            </div>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+        </main>
+
+
+
+
+        <footer>
+
+        </footer>
+
     </body>
 </html>

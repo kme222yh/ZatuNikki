@@ -1,0 +1,17 @@
+.about{
+    color: #7B7B7B;
+    &-body{
+        width: 100%;
+        max-width: 710px;
+        margin: 0 auto;
+        padding: 70px 0;
+    }
+    &-title{
+        font-size: 35px;
+        margin-bottom: 50px;
+    }
+    &-content{
+        font-size: 20px;
+        line-height: 3;
+    }
+}

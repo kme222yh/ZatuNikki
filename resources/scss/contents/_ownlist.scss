@@ -1,0 +1,52 @@
+.owndiarylist{
+    li{
+        list-style: none;
+    }
+    span{
+        font-size: 25px;
+        line-height: 55px;
+        color: #7B7B7B;
+    }
+    a{
+        text-decoration: none;
+    }
+    &-body{
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    &-year, &-month{
+        border-top: 1px solid #7B7B7B;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        &-head{
+            width: 150px;
+            text-align: center;
+            position: sticky;
+            display: block;
+            top: 0;
+        }
+        &-body{
+            flex-grow: 1;
+        }
+    }
+    &-month:first-child{border: none;}
+    &-date{
+        border-radius: 7px;
+        transition: .2s;
+        &-body{
+            display: block;
+        }
+        &-head{
+            width: 80px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        &:hover{
+            background-color: #F7C9A8;
+        }
+    }
+}
