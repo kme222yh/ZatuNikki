@@ -11,8 +11,13 @@ class Diary extends Model
     use HasFactory;
 
 
+    protected $dates = [
+        "date",
+    ];
+
+
     public function setDefault(){
-        $this->date = Carbon::now()->format('Y/m/d');
+        $this->date = Carbon::now();
         $this->title = '';
         $this->contents = '';
         $this->published = false;
@@ -26,7 +31,6 @@ class Diary extends Model
             return (new Carbon($this->date))->format('Y年m月d日の日記');
         }
     }
-
 
     public function user()
     {

@@ -5,7 +5,7 @@
                 {{ $diary->getTitle() }}
             </h2>
             <span class="diarydetail-date">
-                {{ $diary->date }}
+                {{ $diary->date->format('Y/m/d') }}
             </span>
             <p class="diarydetail-content">
                 {!! nl2br(e($diary->contents)) !!}

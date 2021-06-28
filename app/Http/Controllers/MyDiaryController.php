@@ -40,7 +40,7 @@ class MyDiaryController extends Controller
 
 
     public function list(Request $request){
-        $diaries = $request->user()->diaries()->get();
+        $diaries = $request->user()->diaries()->orderBy('date', 'desc')->get();
         for($i=0; $i<count($diaries); $i++){
             $diaries[$i]->year = (new Carbon($diaries[$i]->created_at))->year;
             $diaries[$i]->month = (new Carbon($diaries[$i]->created_at))->month;
@@ -48,11 +48,8 @@ class MyDiaryController extends Controller
         }
         return view('diary.ownlist', [
             "diaries" => $diaries ?? Null,
-            // "year" => $diaries[0]->year,
-            // "month" => $diaries[0]->month,
-            // "day" => $diaries[0]->day,
-            "date" => Carbon::now(),
-            "last" => Carbon::now(),
+            "date" => Carbon::now()->startOfDay(),
+            "last" => Carbon::now()->startOfDay(),
             "i" => 0,
         ]);
     }

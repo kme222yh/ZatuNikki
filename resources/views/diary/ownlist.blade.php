@@ -15,7 +15,7 @@
                         <span class="owndiarylist-month-head">{{ $date->month }}月</span>
                         <ul class="owndiarylist-month-body">
                             @while ($i < count($diaries))
-                            @if($diaries[$i]->year==$date->year && $diaries[$i]->month==$date->month && $diaries[$i]->day==$date->day)
+                            @if($date->eq($diaries[$i]->date))
                                 <li class="owndiarylist-date">
                                     <a class="owndiarylist-date-body" href="{{ route('view', ['diary'=>$diaries[$i]->id]) }}">
                                         <span class="owndiarylist-date-head">{{ $date->day }}日</span>
