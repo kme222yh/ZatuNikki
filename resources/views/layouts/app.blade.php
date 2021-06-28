@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="{{asset('css/reset.css')}}">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
+        <script type="text/javascript">console.log('Welcome to ZatuNikki !!!');</script>
+
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <title>{{ config('app.name') }}</title>

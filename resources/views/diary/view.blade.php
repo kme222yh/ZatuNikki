@@ -12,4 +12,10 @@
             </p>
         </div>
     </div>
+    @if($diary->user_id == Auth::id())
+    <diary-menu-component
+        deleteurl="{{ route('delete', ['diary'=>$diary->id]) }}"
+        editurl="{{ route('write.edit', ['diary'=>$diary->id]) }}"
+    ></diary-menu-component>
+    @endif
 </x-app-layout>

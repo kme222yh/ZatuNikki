@@ -14,26 +14,40 @@
   height: 350px;
   width: 500px;
   background-color: white;
-  background-image: url(/images/article.png?6c0fb33860dbe6da83cf686e715bc9b3);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: 0 50px;
   margin-bottom: 100px;
   box-sizing: border-box;
   border-radius: 7px;
   transition: 0.2s;
+  padding-left: 30px;
+  padding-top: 30px;
+  overflow: hidden;
+  position: relative;
 }
 .otherarticles-item:hover {
   opacity: 0.6;
 }
-.otherarticles-item:last-child {
-  margin-right: 0;
-}
 .otherarticles-item a {
-  display: block;
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.otherarticles-item-title, .otherarticles-item-date, .otherarticles-item-contents {
+  color: #7B7B7B;
+  margin-bottom: 35px;
+}
+.otherarticles-item-title {
+  font-size: 20px;
+}
+.otherarticles-item-date {
+  font-size: 10px;
+}
+.otherarticles-item-contents {
+  font-size: 20px;
+  line-height: 2;
+  white-space: nowrap;
 }
 .about {
   color: #7B7B7B;
