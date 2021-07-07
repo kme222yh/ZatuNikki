@@ -16,6 +16,9 @@ npm install
 npm run dev
 php artisan migrate
 php artisan migrate:fresh --seed
+
+composer require encore/laravel-admin
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
 ```
 
 ### コマンド
