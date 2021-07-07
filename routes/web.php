@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use \App\Http\Controllers\OtherDiaryController;
-use \App\Http\Controllers\MyDiaryController;
+use \App\Http\Controllers\DiaryController;
+use \App\Http\Controllers\DefaultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,24 +16,22 @@ use \App\Http\Controllers\MyDiaryController;
 |
 */
 
-Route::get('/', [OtherDiaryController::class, 'list'])->name('home');
+Route::get('/', [DefaultController::class, 'index'])->name('home');
 Route::get('/about', function(){return view('about');})->name('about');
 
-Route::get('/view/diary/{diary}', [OtherDiaryController::class, 'diary'])->name('view');    // 日記詳細表示
-Route::get('/view/diary', [MyDiaryController::class, 'list'])->middleware(['auth'])->name('view.list');      // 自分の日記一覧
-
-Route::get('/write/new', [MyDiaryController::class, 'new'])->middleware(['auth'])->name('write.new');
-Route::get('/write/edit/{diary}', [MyDiaryController::class, 'edit'])->middleware(['auth'])->name('write.edit');
-
-Route::post('/api/diary/save', [MyDiaryController::class, 'save'])->middleware(['auth'])->name('api.save');
-
-Route::get('/delete/{diary}', [MyDiaryController::class, 'delete'])->middleware(['auth'])->name('delete');
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+Route::name('diary.')->prefix('diary')->group(function(){
+    Route::middleware(['auth'])->group(function(){
+        Route::get('list', [DiaryController::class, 'list'])->name('list');      // 自分の日記一覧
+        Route::get('new', [DiaryController::class, 'new'])->name('new');
+        Route::get('edit/{diary}', [DiaryController::class, 'edit'])->name('edit');
+        Route::post('api/save', [DiaryController::class, 'save'])->name('save');
+        Route::get('delete/{diary}', [DiaryController::class, 'delete'])->name('delete');
+    });
+    Route::get('show/{diary}', [DiaryController::class, 'show'])->name('show');    // 日記詳細表示
+});
+
+
 
 require __DIR__.'/auth.php';
-
-// require __DIR__.'/test.php';

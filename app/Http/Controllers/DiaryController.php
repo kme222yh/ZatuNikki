@@ -8,8 +8,20 @@ use \App\Models\Diary;
 use \App\Http\Requests\DiaryEditRequest;
 use Carbon\Carbon;
 
-class MyDiaryController extends Controller
+class DiaryController extends Controller
 {
+
+    public function show(Request $request, Diary $diary){
+        if($diary->published){
+            return view('diary.view', ["diary" => $diary, "date" => (new Carbon($diary->date))->format('Y/m/d')]);
+        } elseif($request->user() && $diary->user_id == $request->user()->id) {
+            return view('diary.view', ["diary" => $diary,]);
+        }
+        abort(404);
+    }
+
+
+
     // 当日のdiaryが存在するかだけを判断
     public function new(Request $request){
         $diary = $request->user()->diaries()->whereDate('created_at', Carbon::today())->first();
@@ -41,11 +53,6 @@ class MyDiaryController extends Controller
 
     public function list(Request $request){
         $diaries = $request->user()->diaries()->orderBy('date', 'desc')->get();
-        for($i=0; $i<count($diaries); $i++){
-            $diaries[$i]->year = (new Carbon($diaries[$i]->created_at))->year;
-            $diaries[$i]->month = (new Carbon($diaries[$i]->created_at))->month;
-            $diaries[$i]->day = (new Carbon($diaries[$i]->created_at))->day;
-        }
         return view('diary.ownlist', [
             "diaries" => $diaries ?? Null,
             "date" => Carbon::now()->startOfDay(),
@@ -77,6 +84,7 @@ class MyDiaryController extends Controller
         $diary->save();
         return response(200);
     }
+
 
 
     public function delete(Diary $diary, Request $request){

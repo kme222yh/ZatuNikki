@@ -17,7 +17,7 @@
                             @while ($i < count($diaries))
                             @if($date->eq($diaries[$i]->date))
                                 <li class="owndiarylist-date">
-                                    <a class="owndiarylist-date-body" href="{{ route('view', ['diary'=>$diaries[$i]->id]) }}">
+                                    <a class="owndiarylist-date-body" href="{{ route('diary.show', ['diary'=>$diaries[$i]->id]) }}">
                                         <span class="owndiarylist-date-head">{{ $date->day }}日</span>
                                         <span class="owndiarylist-date-title">{{ $diaries[$i]->getTitle() }}</span>
                                     </a>

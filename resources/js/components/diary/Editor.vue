@@ -109,6 +109,15 @@
         }
     }
 }
+
+.e-d-t-date{
+    max-width: 710px;
+    display: block;
+    margin: 0 auto;
+    color: #7B7B7B;
+    font-size: 25px;
+}
+
 </style>
 
 
@@ -128,6 +137,14 @@
         mounted(){
             this.diary = JSON.parse(this.diary_str);
             this.diary.date = this.formatDate(new Date(this.diary.date), 'yyyy/MM/dd');
+
+            let textarea = document.getElementsByClassName('editor-content')[0];
+            let clientHeight = textarea.clientHeight;
+            textarea.addEventListener('input', ()=>{
+                textarea.style.height = clientHeight + 'px';
+                let scrollHeight = textarea.scrollHeight;
+                textarea.style.height = scrollHeight + 'px';
+            });
         },
         methods: {
             togglePublish: function(){
