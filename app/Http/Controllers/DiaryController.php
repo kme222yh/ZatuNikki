@@ -24,9 +24,9 @@ class DiaryController extends Controller
 
     // 当日のdiaryが存在するかだけを判断
     public function new(Request $request){
-        $diary = $request->user()->diaries()->whereDate('created_at', Carbon::today())->first();
+        $diary = $request->user()->diaries()->whereDate('date', Carbon::today())->first();
         if($diary){
-            return redirect()->route('write.edit', ['diary' => $diary->id]);
+            return redirect()->route('diary.edit', ['diary' => $diary->id]);
         } else {
             $diary = new Diary();
             $diary->setDefault();
