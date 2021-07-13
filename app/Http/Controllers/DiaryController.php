@@ -65,16 +65,16 @@ class DiaryController extends Controller
 
     public function save(DiaryEditRequest $request){
         if(!$request->user()){  // ユーザー判定
-            return response(404);
+            return abort(400);
         }
         $validated = $request->validated();
         if($request->id){
             $diary = Diary::find($request->id);
-            if(!$diary){return response(404);}
-            if($diary->user_id != $request->user()->id){return response(400);}
+            if(!$diary){return abort(400);}
+            if($diary->user_id != $request->user()->id){return abort(400);}
         } else {
             $diary = new Diary();
-            if($request->user()->diaries()->whereDate('created_at', Carbon::today())->first()){return response(400);}
+            if($request->user()->diaries()->whereDate('date', Carbon::today())->first()){return abort(400);}
         }
         $diary->title = $request->title;
         $diary->contents = $validated['contents'];
@@ -82,7 +82,7 @@ class DiaryController extends Controller
         $diary->date = $validated['date'];
         $diary->user_id = $request->user()->id;
         $diary->save();
-        return response(200);
+        return $diary;
     }
 
 

@@ -158,9 +158,14 @@
                 this.sending = true;
                 const url = this.api;
                 const param = this.diary;
-                console.log(param)
+                // console.log(param)
                 axios.post(url, param).then(res=>{
-
+                    // console.log(res.data);
+                    this.diary.contents = res.data.contents;
+                    this.diary.date = this.formatDate(new Date(res.data.date), 'yyyy/MM/dd');
+                    this.diary.published = res.data.published;
+                    this.diary.title = res.data.title;
+                    this.diary.id = res.data.id;
                 }).finally(()=>{
                     this.sending=false;
                 });

@@ -4155,9 +4155,16 @@ __webpack_require__.r(__webpack_exports__);
 
       this.sending = true;
       var url = this.api;
-      var param = this.diary;
-      console.log(param);
-      axios.post(url, param).then(function (res) {})["finally"](function () {
+      var param = this.diary; // console.log(param)
+
+      axios.post(url, param).then(function (res) {
+        // console.log(res.data);
+        _this.diary.contents = res.data.contents;
+        _this.diary.date = _this.formatDate(new Date(res.data.date), 'yyyy/MM/dd');
+        _this.diary.published = res.data.published;
+        _this.diary.title = res.data.title;
+        _this.diary.id = res.data.id;
+      })["finally"](function () {
         _this.sending = false;
       });
     },
