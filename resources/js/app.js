@@ -1,19 +1,19 @@
 require('./bootstrap');
 
-require('alpinejs');
+// require('alpinejs');
 
 
 
 
+import { createApp } from 'vue';
+import EditorComponent from './components/diary/Editor.vue';
+import DiaryMenuComponent from './components/diary/Menu.vue';
+import WaitAnimationComponent from './components/WaitAnimation.vue';
 
-
-
-window.Vue = require('vue').default;
-Vue.component('EditorComponent', require('./components/diary/Editor.vue').default);
-Vue.component('DiaryMenuComponent', require('./components/diary/Menu.vue').default);
-Vue.component('WaitAnimationComponent', require('./components/WaitAnimation.vue').default);
-const app = new Vue({
-    el: '#app',
-    created(){
+createApp({
+    components:{
+        WaitAnimationComponent,
+        DiaryMenuComponent,
+        EditorComponent,
     }
-});
+}).mount('#app')

@@ -56,18 +56,19 @@
 
 
 <script>
+    import { ref } from 'vue'
     export default {
         props: {
             deleteurl: '',
             editurl: "",
         },
-        data: ()=>({
-            opened: false,
-        }),
-        methods: {
-            toggleMenu(){
-                this.opened = !this.opened;
-            },
-        }
+        setup() {
+            const opened = ref(false);
+            const toggleMenu = () => {opened.value = !opened.value};
+            return {
+                opened,
+                toggleMenu,
+            };
+        },
     }
 </script>

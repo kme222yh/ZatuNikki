@@ -36,10 +36,10 @@
         &.v-enter-active, &.v-leave-active{
             transition: .4s;
         }
-        &.v-enter, &.v-leave-to{
+        &.v-enter-from, &.v-leave-to{
             opacity: 0;
         }
-        &.v-enter-to, &.v-leave{
+        &.v-enter-to, &.v-leave-from{
             opacity: 0.5;
         }
     }

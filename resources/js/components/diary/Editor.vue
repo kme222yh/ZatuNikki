@@ -3,7 +3,7 @@
         <p class="e-d-t-date">{{diary.date}}</p>
         <div class="editor-body">
             <input class="editor-title" type="text" name="" v-model="diary.title" placeholder="日記タイトル(空の場合は日付が入ります)">
-            <textarea class="editor-content" name="name" v-model="diary.contents" placeholder="日記を書きましょう！"></textarea>
+            <textarea class="editor-content" name="name" v-model="diary.contents" @input="adjustTextareaHeight" placeholder="日記を書きましょう！"></textarea>
             <div v-bind:class="{'editor-publish': 1, 'uncheck': !diary.published}" @click="togglePublish">
                 <span class="check">公開する</span>
                 <span class="uncheck">公開しない</span>
@@ -11,7 +11,7 @@
             <div class="editor-submit" @click="submit">保存する</div>
         </div>
 
-        <wait-animation-component :display="sending"></wait-animation-component>
+        <WaitAnimationComponent :display="sending"></WaitAnimationComponent>
     </div>
 </template>
 
@@ -122,73 +122,102 @@
 
 
 <script>
+    import { ref, onMounted, reactive } from 'vue';
+    import WaitAnimationComponent from '../WaitAnimation.vue';
+
     export default {
+        components: {
+            WaitAnimationComponent,
+        },
         props: {
             api: '',
             diary_str: "",
         },
-        data: ()=>({
-            diary: {},
-            error: {
-                content: false,
-            },
-            sending: false,
-        }),
-        mounted(){
-            this.diary = JSON.parse(this.diary_str);
-            this.diary.date = this.formatDate(new Date(this.diary.date), 'yyyy/MM/dd');
-
-            let textarea = document.getElementsByClassName('editor-content')[0];
-            let clientHeight = textarea.clientHeight;
-            textarea.addEventListener('input', ()=>{
-                textarea.style.height = clientHeight + 'px';
-                let scrollHeight = textarea.scrollHeight;
-                textarea.style.height = scrollHeight + 'px';
-            });
-        },
-        methods: {
-            togglePublish: function(){
-                this.diary.published = !this.diary.published;
-            },
-            submit: function(){
-                if(!this.validation()){
-                    console.log('日記の内容がありません。')
-                    return;
-                }
-                this.sending = true;
-                const url = this.api;
-                const param = this.diary;
-                // console.log(param)
-                axios.post(url, param).then(res=>{
-                    // console.log(res.data);
-                    this.diary.contents = res.data.contents;
-                    this.diary.date = this.formatDate(new Date(res.data.date), 'yyyy/MM/dd');
-                    this.diary.published = res.data.published;
-                    this.diary.title = res.data.title;
-                    this.diary.id = res.data.id;
-                }).finally(()=>{
-                    this.sending=false;
-                });
-            },
-            validation(){
-                this.error.contents = false
-                let result = true
-                if(!this.diary.contents){
-                    this.error.contents = true
-                    result = result&false
-                }
-                return result
-            },
-            formatDate (date, format) {
+        setup(props){
+            const formatDate = (date, format) => {
                 format = format.replace(/yyyy/g, date.getFullYear());
                 format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
                 format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
-                format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
-                format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
-                format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
-                format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
                 return format;
-            },
-        }
+            };
+
+
+            const diary = ref(JSON.parse(props.diary_str));
+            diary.value.date = formatDate(new Date(diary.value.date), 'yyyy/MM/dd');
+            const togglePublish = () => {diary.value.published = !diary.value.published;};
+
+
+            const sending = ref(false);
+
+
+            const error = ref({
+                content : false,
+            });
+            const validation = () => {
+                error.value.contents = false
+                let result = true
+                if(!diary.value.contents){
+                    error.value.contents = true
+                    result = result&false
+                }
+                return result
+            };
+            const submit = () => {
+                if(!validation()){
+                    console.log('日記の内容がありません。')
+                    return;
+                }
+                sending.value = true;
+                const url = props.api;
+                const param = diary.value;
+                axios.post(url, param).then(res=>{
+                    diary.value.contents = res.data.contents;
+                    diary.value.date = formatDate(new Date(res.data.date), 'yyyy/MM/dd');
+                    diary.value.published = res.data.published;
+                    diary.value.title = res.data.title;
+                    diary.value.id = res.data.id;
+                }).finally(()=>{
+                    sending.value = false;
+                });
+            };
+
+            const textareaLine = ref(0);
+            const adjustTextareaHeight = () => {
+                let $textarea = document.getElementsByClassName('editor-content')[0];
+                let $content = document.getElementsByClassName('content')[0];
+                const oldTextareLine = textareaLine.value;
+                textareaLine.value = ($textarea.value + '\n').match(/\n/g).length;
+                const $textareaStyle = getComputedStyle($textarea, null);
+                const padding = parseInt($textareaStyle.getPropertyValue('padding-top')) + parseInt($textareaStyle.getPropertyValue('padding-bottom'));
+                const lineHeight = parseInt($textareaStyle.getPropertyValue('line-height'));
+                const minHeight = parseInt($textareaStyle.getPropertyValue('min-height'));
+                const dLine = textareaLine.value - oldTextareLine;
+                const scrollAmount = dLine * lineHeight;
+                $textarea.style.height = textareaLine.value * lineHeight + padding + 'px';
+                if(textareaLine.value * lineHeight + padding > minHeight){
+                    $content.scrollBy(0, scrollAmount);
+                }
+            };
+
+            onMounted(()=>{
+                let $textarea = document.getElementsByClassName('editor-content')[0];
+                textareaLine.value = ($textarea.value + '\n').match(/\n/g).length;
+            });
+
+            return {
+                formatDate,
+
+                diary,
+                togglePublish,
+
+                sending,
+
+                validation,
+                submit,
+
+                textareaLine,
+                adjustTextareaHeight,
+            };
+        },
     }
 </script>
