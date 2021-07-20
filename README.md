@@ -3,8 +3,8 @@
 
 * PHP 7.4
 * Laravel 8.x
+* Vue.js 3.x
 * MySql 5.6
-* Vue.js 2.5
 
 セットアップ
 -------------------
