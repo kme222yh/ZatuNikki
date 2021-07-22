@@ -1,5 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/reset.css": "/css/reset.css"
+    "/css/top.css": "/css/top.css",
+    "/css/diary.css": "/css/diary.css",
+    "/css/base.css": "/css/base.css",
+    "/css/auth.css": "/css/auth.css",
+    "/css/reset.css": "/css/reset.css",
+    "/css/error.css": "/css/error.css"
 }

@@ -26,5 +26,8 @@
         "vue": "^3.1.4",
         "vue-loader": "^16.3.0",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "vuex": "^4.0.2"
     }
 }

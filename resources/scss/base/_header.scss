@@ -1,0 +1,103 @@
+.header{
+    background-color: #F7C9A8;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    left: 0;
+    &-body{
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+    }
+    &-info{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    &-link{
+        color: #FFF7EF;
+        font-size: 30px;
+        margin-right: 40px;
+        a{
+            color: #FFF7EF;
+            font-size: 30px;
+            text-decoration: none;
+        }
+    }
+    &-title{
+        color: #FFF7EF;
+        font-size: 30px;
+    }
+    &-navlink{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        list-style: none;
+        &-item{
+            margin-left: 20px;
+            &>a{
+                display: block;
+                height: 40px;
+                padding: 0 20px;
+                text-decoration: none;
+                color: #FFF7EF;
+                font-size: 15px;
+                line-height: 40px;
+                border-radius: 7px;
+                &.marked{
+                    background-color: #FF9C57;
+                }
+                transition: .3s;
+                &:hover{
+                    background-color: #E68E50;
+                }
+            }
+        }
+    }
+}
+.header-space{
+    height: 80px;
+}
+
+
+
+
+
+@include tablet{
+    .header{
+        &-body{
+            height: 50px;
+            padding: 0 10px;
+        }
+        &-info{
+
+        }
+        &-link{
+            font-size: 20px;
+            margin-right: 15px;
+            a{
+                font-size: 20px;
+            }
+        }
+        &-title{
+            font-size: 20px;
+        }
+        &-navlink{
+            &-item{
+                margin-left: 5px;
+                &>a{
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0 10px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    .header-space{
+        height: 50px;
+    }
+}

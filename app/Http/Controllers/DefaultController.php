@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function index(){
         $diaries = Diary::where('published', true)->inRandomOrder()->take(18)->get();
-        return view('top', [
+        return view('top.top', [
             "diaries" => $diaries,
         ]);
     }

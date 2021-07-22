@@ -1,49 +1,29 @@
-<!-- <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<x-app-layout>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-        </div>
-
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        @endif
-
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
-
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
-            </form>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
-        </div>
-    </x-auth-card>
-</x-guest-layout> -->
-
-
-<x-guest-layout>
-
-    <x-slot name="nav">
-        <a class="navigation-item register" href="{{ route('register') }}">あたらしくはじめる</a>
+    <x-slot name="css">
+        <link rel="stylesheet" href="{{asset('css/auth.css')}}">
     </x-slot>
+
+
+
+
+    <x-slot name="headerLink">
+        <a href="{{ route('home') }}">ざつにっき</a>
+    </x-slot>
+
+    <x-slot name="headerTitle"></x-slot>
+
+    <x-slot name="headerNavlink">
+        <li class="header-navlink-item"><a class="" href="{{ route('about') }}">ざつにっきとは</a></li>
+        <li class="header-navlink-item"><a class="marked" href="{{ route('login') }}">ログイン</a></li>
+    </x-slot>
+
+
+
+
+    <a class="logo" href="/">
+        <img src="{{ asset("images/logo/open_white.png") }}" alt="">
+    </a>
 
     <div class="authform">
         <h2 class="authform-head">ログイン</h2>
@@ -77,5 +57,4 @@
 
             <button class="authform-button" type="submit" name="button">ログイン</button>
         </form>
-    </div>
-</x-guest-layout>
+    </div></x-app-layout>

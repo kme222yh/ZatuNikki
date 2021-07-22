@@ -13,9 +13,9 @@ class DiaryController extends Controller
 
     public function show(Request $request, Diary $diary){
         if($diary->published){
-            return view('diary.view', ["diary" => $diary, "date" => (new Carbon($diary->date))->format('Y/m/d')]);
+            return view('diary.show', ["diary" => $diary, "date" => (new Carbon($diary->date))->format('Y/m/d')]);
         } elseif($request->user() && $diary->user_id == $request->user()->id) {
-            return view('diary.view', ["diary" => $diary,]);
+            return view('diary.show', ["diary" => $diary,]);
         }
         abort(404);
     }
@@ -53,12 +53,11 @@ class DiaryController extends Controller
 
     public function list(Request $request){
         $diaries = $request->user()->diaries()->orderBy('date', 'desc')->get();
-        return view('diary.ownlist', [
-            "diaries" => $diaries ?? Null,
-            "date" => Carbon::now()->startOfDay(),
-            "last" => Carbon::now()->startOfDay(),
-            "i" => 0,
-        ]);
+        $param = [];
+        foreach ($diaries as $key => $diary) {
+            $param[$diary->date->year][$diary->date->month][$diary->date->day] = $diary;
+        }
+        return $param;
     }
 
 
@@ -93,7 +92,7 @@ class DiaryController extends Controller
             return redirect()->route('home');
         } else {
             $diary->delete();
-            return redirect()->route('view.list');
+            return redirect()->route('diary.list');
         }
     }
 

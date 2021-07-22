@@ -1,7 +1,29 @@
-<x-guest-layout>
-    <x-slot name="nav">
-        <a class="navigation-item login" href="{{ route('login') }}">登録済みの方はこちら</a>
+<x-app-layout>
+
+    <x-slot name="css">
+        <link rel="stylesheet" href="{{asset('css/auth.css')}}">
     </x-slot>
+
+
+
+
+    <x-slot name="headerLink">
+        <a href="{{ route('home') }}">ざつにっき</a>
+    </x-slot>
+
+    <x-slot name="headerTitle"></x-slot>
+
+    <x-slot name="headerNavlink">
+        <li class="header-navlink-item"><a class="" href="{{ route('about') }}">ざつにっきとは</a></li>
+        <li class="header-navlink-item"><a href="{{ route('login') }}">ログイン</a></li>
+    </x-slot>
+
+
+
+
+    <a class="logo" href="/">
+        <img src="{{ asset("images/logo/open_white.png") }}" alt="">
+    </a>
 
     <div class="authform">
         <h2 class="authform-head">新しくはじめる</h2>
@@ -15,14 +37,14 @@
 
             <!-- User Name -->
             <div class="authform-item">
-                <label for="name">ユーザー名</label>
-                <input id="name" type="text" name="name" :value="old('name')" required autofocus>
+                <label for="name">ユーザー名　(公開されません)</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
             </div>
 
             <!-- Email Address -->
             <div class="authform-item">
                 <label for="email">メールアドレス</label>
-                <input id="email" type="email" name="email" :value="old('email')" required autofocus>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
             </div>
 
             <!-- Password -->
@@ -41,4 +63,4 @@
             <button class="authform-button" type="submit" name="button">登録</button>
         </form>
     </div>
-</x-guest-layout>
+</x-app-layout>

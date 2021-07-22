@@ -1,0 +1,23 @@
+@import "../utility";
+@import "../variables";
+
+
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap');
+
+
+html, body{
+    height: 100%;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+
+
+
+
+
+@import "header";
+@import "menuButton";
+@import "grayBackground";
+@import "messanger";

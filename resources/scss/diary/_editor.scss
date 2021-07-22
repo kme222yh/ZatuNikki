@@ -1,0 +1,112 @@
+.editor{
+    &-body{
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    input, textarea{
+        color: #7B7B7B;
+        border: none;
+        background-color: white;
+        border-radius: 7px;
+        outline: none;
+        padding: 30px 40px;
+    }
+    &-title{
+        font-size: 25px;
+        line-height: 1;
+        margin-bottom: 40px;
+        padding: 30px 40px
+    }
+    &-content{
+        min-height: 50vh;
+        font-size: 20px;
+        line-height: 2;
+        margin-bottom: 40px;
+        resize: none;
+    }
+    &-publish{
+        background-color: #C4F7C1;
+        width: 210px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        height: 55px;
+        border-radius: 100px;
+        text-align: center;
+        line-height: 55px;
+        font-size: 15px;
+        color: #707070;
+        transition: .2s;
+        cursor: pointer;
+        .check{display: block}
+        .uncheck{display: none}
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 9px;
+            height: 40px;
+            width: 40px;
+            transition: .2s;
+            background-color: white;
+            border-radius: 100px;
+            transform: translateY(-50%);
+        }
+        &.uncheck{
+            background-color: #707070;
+            color: white;
+            .check{display: none}
+            .uncheck{display: block}
+            &::before{
+                left: 161px;
+            }
+        }
+    }
+    &-submit{
+        color: #7B7B7B;
+        width: 100%;
+        padding: 20px 0;
+        border-radius: 7px;
+        border: solid 1px #7B7B7B;
+        background-color: transparent;
+        font-size: 20px;
+        text-align: center;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: .2s;
+        &:hover{
+            background-color: #F7C9A8;
+            border: none;
+            color: white;
+        }
+    }
+}
+
+
+
+
+@include tablet{
+    .editor{
+        &-body{
+            padding: 40px 30px;
+        }
+        input, textarea{
+            padding: 20px 15px
+        }
+        &-title{
+            font-size: 20px;
+        }
+        &-content{
+            font-size: 15px;
+        }
+        &-publish{
+            font-size: 15px;
+        }
+        &-submit{
+            font-size: 15px;
+        }
+    }
+}
