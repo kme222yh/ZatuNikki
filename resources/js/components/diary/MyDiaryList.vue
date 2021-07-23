@@ -3,9 +3,9 @@
         <div class="mydiarylist-body">
             <div class="minimap">
                 <div class="minimap-body">
-                    <ul class="minimap-item" v-for="(y_diaries, year) in diaries" :key="year">
+                    <ul class="minimap-item" v-for="year in reversedKeys(diaries)" :key="year">
                         <li class="minimap-year">{{ year }}年</li>
-                        <li class="minimap-month" v-for="(m_diaries, month) in y_diaries" :key="month">
+                        <li class="minimap-month" v-for="month in reversedKeys(diaries[year])" :key="month">
                             <a :href="'#'+year+month">{{ month }}月</a>
                         </li>
                     </ul>
@@ -14,11 +14,14 @@
 
             <div class="list">
                 <div class="list-body">
-                    <div class="list-year" v-for="(y_diaries, year) in diaries" :key="year">
-                        <ul :id="year+month" class="list-month" v-for="(m_diaries, month) in y_diaries" :key="month">
+                    <div class="list-year" v-for="year in reversedKeys(diaries)" :key="year">
+                        <ul :id="year+month" class="list-month" v-for="month in reversedKeys(diaries[year])" :key="month">
                             <li class="list-head">{{ year }}年 {{ month }}月</li>
-                            <li class="list-day" v-for="(diary, day) in m_diaries" :key="day">
-                                <a :href="showurl+'/'+diary.id"><span>{{ day }}日</span> {{ diary.title ?? formatDate(new Date(diary.date), 'yyyy年MM月dd日の日記') }}</a>
+                            <li class="list-day" v-for="day in reversedKeys(diaries[year][month])" :key="day">
+                                <a :href="showurl+'/'+diaries[year][month][day].id">
+                                    <span>{{ day }}日</span>
+                                    {{ getTitle(diaries[year][month][day]) }}
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -30,7 +33,8 @@
 
 
 <script>
-    import { ref, onMounted } from 'vue'
+    import { ref, onMounted, filter } from 'vue'
+    import { useStore } from 'vuex'
 
     export default {
         props: {
@@ -38,13 +42,14 @@
             showurl: '',
         },
         setup(props){
+            const store = useStore();
+
             const diaries = ref([]);
 
             onMounted(() => {
                 const url = props.api;
                 axios.get(url).then(res=>{
                     diaries.value = res.data;
-                    console.log(res.data[2021][4][30]);
                 }).catch(()=>{
                     store.commit('pushMessage', {
                         text: 'データの取得に失敗しました',
@@ -61,10 +66,18 @@
                 return format;
             };
 
+            const getTitle = diary => diary.title ?? formatDate(new Date(diary.date), 'yyyy年MM月dd日の日記');
+
+            const reversedKeys = items => Object.keys(items).reverse();
+
             return {
                 diaries,
 
                 formatDate,
+
+                getTitle,
+
+                reversedKeys,
             }
         }
     }

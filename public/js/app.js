@@ -18134,17 +18134,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _WaitAnimation_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../WaitAnimation.vue */ "./resources/js/components/WaitAnimation.vue");
 
 
+ // import Dialog from './dialog.vue';
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    WaitAnimationComponent: _WaitAnimation_vue__WEBPACK_IMPORTED_MODULE_1__.default
+    WaitAnimationComponent: _WaitAnimation_vue__WEBPACK_IMPORTED_MODULE_1__.default // Dialog,
+
   },
   props: {
     api: '',
     diary_str: ""
   },
   setup: function setup(props) {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)(); // const nowOpened = computed(() => store.state.nowOpened);
+    // const closeSomething = () => {store.commit('closeSomething');};
+    // const openConfirmDialog = () => {
+    //     store.commit('openSomething', 'DiaryEditorMoveConfirmDialog');
+    // }
 
     var formatDate = function formatDate(date, format) {
       format = format.replace(/yyyy/g, date.getFullYear());
@@ -18212,6 +18218,7 @@ __webpack_require__.r(__webpack_exports__);
     var textareaLine = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
 
     var adjustTextareaHeight = function adjustTextareaHeight() {
+      return;
       var $textarea = document.getElementsByClassName('editor-content')[0];
       var $content = document.getElementsByClassName('content')[0];
       var oldTextareLine = textareaLine.value;
@@ -18233,7 +18240,28 @@ __webpack_require__.r(__webpack_exports__);
       var $textarea = document.getElementsByClassName('editor-content')[0];
       textareaLine.value = ($textarea.value + '\n').match(/\n/g).length;
     });
+    var alreadyConfirmSet = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+
+    var unloadEvent = function unloadEvent(e) {
+      e.returnValue = '変更を保存していません。';
+    };
+
+    var setConfirmChange = function setConfirmChange() {
+      if (alreadyConfirmSet.value == true) return;
+      alreadyConfirmSet.value = true;
+      window.addEventListener('beforeunload', unloadEvent, false);
+    };
+
+    var cancelConfirmChange = function cancelConfirmChange() {
+      if (alreadyConfirmSet.value == false) return;
+      alreadyConfirmSet.value = false;
+      window.removeEventListener('beforeunload', unloadEvent, false);
+    };
+
     return {
+      // nowOpened,
+      // closeSomething,
+      // openConfirmDialog,
       formatDate: formatDate,
       diary: diary,
       togglePublish: togglePublish,
@@ -18241,7 +18269,9 @@ __webpack_require__.r(__webpack_exports__);
       validation: validation,
       submit: submit,
       textareaLine: textareaLine,
-      adjustTextareaHeight: adjustTextareaHeight
+      adjustTextareaHeight: adjustTextareaHeight,
+      setConfirmChange: setConfirmChange,
+      cancelConfirmChange: cancelConfirmChange
     };
   }
 });
@@ -18260,6 +18290,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -18267,12 +18299,12 @@ __webpack_require__.r(__webpack_exports__);
     showurl: ''
   },
   setup: function setup(props) {
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
     var diaries = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       var url = props.api;
       axios.get(url).then(function (res) {
         diaries.value = res.data;
-        console.log(res.data[2021][4][30]);
       })["catch"](function () {
         store.commit('pushMessage', {
           text: 'データの取得に失敗しました',
@@ -18288,9 +18320,21 @@ __webpack_require__.r(__webpack_exports__);
       return format;
     };
 
+    var getTitle = function getTitle(diary) {
+      var _diary$title;
+
+      return (_diary$title = diary.title) !== null && _diary$title !== void 0 ? _diary$title : formatDate(new Date(diary.date), 'yyyy年MM月dd日の日記');
+    };
+
+    var reversedKeys = function reversedKeys(items) {
+      return Object.keys(items).reverse();
+    };
+
     return {
       diaries: diaries,
-      formatDate: formatDate
+      formatDate: formatDate,
+      getTitle: getTitle,
+      reversedKeys: reversedKeys
     };
   }
 });
@@ -18493,18 +18537,21 @@ __webpack_require__.r(__webpack_exports__);
       return store.state.messageQueue;
     });
 
+    var popMessage = function popMessage() {
+      return store.getters.processedMessage;
+    };
+
     var displayMessage = function displayMessage() {
       if (!store.getters.doesExistMessage) return;
-      setTimeout(function () {
-        return store.getters.processedMessage;
-      }, 3000);
+      setTimeout(popMessage, 3000);
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(messageQueue, displayMessage, {
       deep: true
     });
     return {
-      messageQueue: messageQueue
+      messageQueue: messageQueue,
+      popMessage: popMessage
     };
   }
 });
@@ -18592,14 +18639,17 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "editor-body"
 };
+var _hoisted_3 = {
+  "class": "editor-head"
+};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "check"
 }, "公開する", -1
 /* HOISTED */
 );
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "uncheck"
 }, "公開しない", -1
 /* HOISTED */
@@ -18608,24 +18658,32 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_WaitAnimationComponent = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("WaitAnimationComponent");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p class=\"editor-head\">{{diary.date}}</p> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.diary.date), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "class": "editor-title",
     type: "text",
     name: "",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.diary.title = $event;
     }),
-    placeholder: "日記タイトル(空の場合は日付が入ります)"
-  }, null, 512
-  /* NEED_PATCH */
+    onChange: _cache[2] || (_cache[2] = function () {
+      return $setup.setConfirmChange && $setup.setConfirmChange.apply($setup, arguments);
+    }),
+    placeholder: "日記タイトル (空の場合は日付が入ります)"
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.diary.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
     "class": "editor-content",
     name: "name",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.diary.contents = $event;
     }),
-    onInput: _cache[3] || (_cache[3] = function () {
+    onInput: _cache[4] || (_cache[4] = function () {
       return $setup.adjustTextareaHeight && $setup.adjustTextareaHeight.apply($setup, arguments);
+    }),
+    onChange: _cache[5] || (_cache[5] = function () {
+      return $setup.setConfirmChange && $setup.setConfirmChange.apply($setup, arguments);
     }),
     placeholder: "日記を書きましょう！"
   }, null, 544
@@ -18635,21 +18693,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'editor-publish': 1,
       'uncheck': !$setup.diary.published
     },
-    onClick: _cache[4] || (_cache[4] = function () {
+    onClick: _cache[6] || (_cache[6] = function () {
       return $setup.togglePublish && $setup.togglePublish.apply($setup, arguments);
     })
-  }, [_hoisted_3, _hoisted_4], 2
+  }, [_hoisted_4, _hoisted_5], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": "editor-submit",
-    onClick: _cache[5] || (_cache[5] = function () {
-      return $setup.submit && $setup.submit.apply($setup, arguments);
+    onClick: _cache[7] || (_cache[7] = function ($event) {
+      return $setup.submit(), $setup.cancelConfirmChange();
     })
-  }, "保存する")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_WaitAnimationComponent, {
+  }, "保存する")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_WaitAnimationComponent, {
     display: $setup.sending
   }, null, 8
   /* PROPS */
-  , ["display"])]);
+  , ["display"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Dialog :display=\"nowOpened=='DiaryEditorMoveConfirmDialog'\" url=\"\" @denied=\"closeSomething\">\n        <i class=\"fas fa-exclamation-circle\"></i> まだ保存していません <br> 変更を破棄しますか？\n    </Dialog> ")], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -18692,13 +18752,13 @@ var _hoisted_8 = {
   "class": "list-head"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.diaries, function (y_diaries, year) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries), function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", {
       "class": "minimap-item",
       key: year
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year) + "年", 1
     /* TEXT */
-    ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(y_diaries, function (m_diaries, month) {
+    ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries[year]), function (month) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
         "class": "minimap-month",
         key: month
@@ -18712,28 +18772,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ))]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.diaries, function (y_diaries, year) {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries), function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       "class": "list-year",
       key: year
-    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(y_diaries, function (m_diaries, month) {
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries[year]), function (month) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", {
         id: year + month,
         "class": "list-month",
         key: month
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year) + "年 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(month) + "月", 1
       /* TEXT */
-      ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(m_diaries, function (diary, day) {
-        var _diary$title;
-
+      ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries[year][month]), function (day) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
           "class": "list-day",
           key: day
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-          href: $props.showurl + '/' + diary.id
+          href: $props.showurl + '/' + $setup.diaries[year][month][day].id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(day) + "日", 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_diary$title = diary.title) !== null && _diary$title !== void 0 ? _diary$title : $setup.formatDate(new Date(diary.date), 'yyyy年MM月dd日の日記')), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getTitle($setup.diaries[year][month][day])), 1
         /* TEXT */
         )], 8
         /* PROPS */
@@ -19064,7 +19122,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": ["messanger-item", {
             warning: message.type == 'warning',
             success: message.type == 'success'
-          }]
+          }],
+          onClick: _cache[1] || (_cache[1] = function () {
+            return $setup.popMessage && $setup.popMessage.apply($setup, arguments);
+          })
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, [message.type == 'warning' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("i", _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), message.type == 'success' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("i", _hoisted_4)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.text), 1
         /* TEXT */
         )])], 2
@@ -19123,6 +19184,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // requir
   }
 }).use(_store_js__WEBPACK_IMPORTED_MODULE_0__.default).mount('#app');
 
+__webpack_require__(/*! ./scripts/headerTitle */ "./resources/js/scripts/headerTitle.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19153,6 +19216,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/scripts/headerTitle.js":
+/*!*********************************************!*\
+  !*** ./resources/js/scripts/headerTitle.js ***!
+  \*********************************************/
+/***/ (() => {
+
+window.addEventListener('load', function () {
+  var $headerInfo = document.getElementsByClassName('header-info')[0];
+  var $headerInfoStyle = getComputedStyle($headerInfo, null);
+  var $headerLink = document.getElementsByClassName('header-link')[0];
+  var $headerLinkStyle = getComputedStyle($headerLink, null);
+  var $headerTitle = document.getElementsByClassName('header-title')[0];
+  $headerTitle.style.width = parseInt($headerInfoStyle.getPropertyValue('width')) - parseInt($headerLinkStyle.getPropertyValue('width')) - parseInt($headerLinkStyle.getPropertyValue('margin-right')) + 'px';
+  $headerTitle.style.whiteSpace = 'nowrap';
+  $headerTitle.style.overflow = 'hidden';
+  $headerTitle.style.textOverflow = 'ellipsis';
+  console.log(parseInt($headerLinkStyle.getPropertyValue('margin-right')));
+});
 
 /***/ }),
 

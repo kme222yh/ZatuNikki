@@ -13,6 +13,7 @@
         padding: 0 30px;
     }
     &-info{
+        flex-grow: 1;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -32,6 +33,7 @@
         font-size: 30px;
     }
     &-navlink{
+        flex-shrink: 0;
         display: flex;
         justify-content: flex-end;
         align-items: center;

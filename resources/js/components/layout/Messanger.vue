@@ -3,7 +3,7 @@
         <ul class="messanger-body">
             <transition-group>
                 <li tag="li" name="messgelist" class="messanger-itemwrapper" v-for="message in messageQueue" :key="message.key">
-                    <li class="messanger-item"
+                    <li class="messanger-item" @click="popMessage"
                         :class="{
                              warning: message.type=='warning',
                              success: message.type=='success',
@@ -32,15 +32,18 @@
             const store = useStore();
             const messageQueue = computed(() => store.state.messageQueue);
 
+            const popMessage = () => store.getters.processedMessage;
+
             const displayMessage = () => {
                 if(!store.getters.doesExistMessage) return;
-                setTimeout(()=>store.getters.processedMessage, 3000);
+                setTimeout(popMessage, 3000);
             }
 
             watch(messageQueue, displayMessage, {deep: true});
 
             return {
                 messageQueue,
+                popMessage
             }
         },
     }

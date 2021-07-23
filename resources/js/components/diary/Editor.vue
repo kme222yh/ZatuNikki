@@ -1,18 +1,23 @@
 <template>
     <div class="editor">
-        <!-- <p class="editor-head">{{diary.date}}</p> -->
         <div class="editor-body">
-            <input class="editor-title" type="text" name="" v-model="diary.title" placeholder="日記タイトル(空の場合は日付が入ります)">
-            <textarea class="editor-content" name="name" v-model="diary.contents" @input="adjustTextareaHeight" placeholder="日記を書きましょう！"></textarea>
+            <p class="editor-head">{{diary.date}}</p>
+            <input class="editor-title" type="text" name="" v-model="diary.title" @change="setConfirmChange" placeholder="日記タイトル (空の場合は日付が入ります)">
+            <textarea class="editor-content" name="name" v-model="diary.contents" @input="adjustTextareaHeight" @change="setConfirmChange" placeholder="日記を書きましょう！"></textarea>
             <div v-bind:class="{'editor-publish': 1, 'uncheck': !diary.published}" @click="togglePublish">
                 <span class="check">公開する</span>
                 <span class="uncheck">公開しない</span>
             </div>
-            <div class="editor-submit" @click="submit">保存する</div>
+            <div class="editor-submit" @click="submit(),cancelConfirmChange()">保存する</div>
         </div>
 
-        <WaitAnimationComponent :display="sending"></WaitAnimationComponent>
     </div>
+
+    <WaitAnimationComponent :display="sending"></WaitAnimationComponent>
+
+    <!-- <Dialog :display="nowOpened=='DiaryEditorMoveConfirmDialog'" url="" @denied="closeSomething">
+        <i class="fas fa-exclamation-circle"></i> まだ保存していません <br> 変更を破棄しますか？
+    </Dialog> -->
 </template>
 
 
@@ -21,11 +26,14 @@
 <script>
     import { ref, onMounted, computed } from 'vue';
     import { useStore } from 'vuex'
+
     import WaitAnimationComponent from '../WaitAnimation.vue';
+    // import Dialog from './dialog.vue';
 
     export default {
         components: {
             WaitAnimationComponent,
+            // Dialog,
         },
         props: {
             api: '',
@@ -33,6 +41,12 @@
         },
         setup(props){
             const store = useStore();
+            // const nowOpened = computed(() => store.state.nowOpened);
+            // const closeSomething = () => {store.commit('closeSomething');};
+
+            // const openConfirmDialog = () => {
+            //     store.commit('openSomething', 'DiaryEditorMoveConfirmDialog');
+            // }
 
             const formatDate = (date, format) => {
                 format = format.replace(/yyyy/g, date.getFullYear());
@@ -95,6 +109,7 @@
 
             const textareaLine = ref(0);
             const adjustTextareaHeight = () => {
+                return;
                 let $textarea = document.getElementsByClassName('editor-content')[0];
                 let $content = document.getElementsByClassName('content')[0];
                 const oldTextareLine = textareaLine.value;
@@ -116,7 +131,28 @@
                 textareaLine.value = ($textarea.value + '\n').match(/\n/g).length;
             });
 
+
+            const alreadyConfirmSet = ref(false);
+            const unloadEvent = (e) => {
+                e.returnValue = '変更を保存していません。';
+            };
+            const setConfirmChange = () => {
+                if(alreadyConfirmSet.value == true) return;
+                alreadyConfirmSet.value = true;
+                window.addEventListener('beforeunload', unloadEvent, false);
+            }
+            const cancelConfirmChange = () => {
+                if(alreadyConfirmSet.value == false) return;
+                alreadyConfirmSet.value = false;
+                window.removeEventListener('beforeunload', unloadEvent, false);
+            }
+
+
             return {
+                // nowOpened,
+                // closeSomething,
+                // openConfirmDialog,
+
                 formatDate,
 
                 diary,
@@ -129,6 +165,9 @@
 
                 textareaLine,
                 adjustTextareaHeight,
+
+                setConfirmChange,
+                cancelConfirmChange,
             };
         },
     }

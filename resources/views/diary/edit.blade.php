@@ -12,7 +12,7 @@
     </x-slot>
 
     <x-slot name="headerTitle">
-        {{ $diary->getTitle() }}
+        かく <i class="fas fa-edit"></i>
     </x-slot>
 
     <x-slot name="headerNavlink">

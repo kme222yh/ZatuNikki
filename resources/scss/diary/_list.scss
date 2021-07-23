@@ -48,7 +48,7 @@
             margin-bottom: 15px
         }
         &-day{
-            margin-left: 20px;
+            margin: 0 20px;
             margin-bottom: 15px;
             a{
                 font-size: 25px;
@@ -96,12 +96,13 @@
                 margin-bottom: 40px;
             }
             &-head{
-                ont-size: 12px;
+                font-size: 12px;
                 padding: 5px 10px;
                 margin-bottom: 10px;
             }
             &-day{
-                margin-left: 10px;
+                margin: 0 10px;
+                margin-bottom: 15px;
                 a{
                     font-size: 20px;
                 }

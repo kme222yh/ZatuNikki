@@ -27,3 +27,8 @@ createApp({
         MyDiaryList,
     }
 }).use(store).mount('#app');
+
+
+
+
+require('./scripts/headerTitle');

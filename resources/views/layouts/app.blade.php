@@ -26,9 +26,7 @@
                     <p class="header-link">{{ $headerLink }}</p>
                     <p class="header-title">{{ $headerTitle }}</p>
                 </div>
-                <div class="">
-                    <ul class="header-navlink">{{ $headerNavlink }}</ul>
-                </div>
+                <ul class="header-navlink">{{ $headerNavlink }}</ul>
             </div>
         </header>
         <div class="header-space"></div>

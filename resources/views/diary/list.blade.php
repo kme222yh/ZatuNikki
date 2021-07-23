@@ -12,7 +12,7 @@
     </x-slot>
 
     <x-slot name="headerTitle">
-        ふりかえる
+        ふりかえる <i class="fas fa-book-open"></i>
     </x-slot>
 
     <x-slot name="headerNavlink">

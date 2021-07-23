@@ -10,16 +10,27 @@
 -------------------
 
 ```
+npm install
+npm run dev
+composer install
+php artisan migrate
+
+php artisan migrate:fresh --seed
+```
+
+### 開発するとき
+
+```
+npm run watch
+php artisan serve --host 0.0.0.0
+```
+
+
+### コマンドログ
+
+```
 php composer.phar require laravel/breeze --dev
 php artisan breeze:install
 npm install
 npm run dev
-php artisan migrate
-php artisan migrate:fresh --seed
-```
-
-### コマンド
-
-```
-npm run watch
 ```

@@ -19,6 +19,7 @@ html, body {
   padding: 0 30px;
 }
 .header-info {
+  flex-grow: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -38,6 +39,7 @@ html, body {
   font-size: 30px;
 }
 .header-navlink {
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -129,7 +131,7 @@ html, body {
   position: absolute;
   z-index: 10;
   right: 6px;
-  top: calc(100% + 43px);
+  top: calc(100% + 50px);
 }
 .menubutton .menulink-body {
   width: 210px;
@@ -208,7 +210,7 @@ html, body {
   }
   .menubutton .menulink {
     right: 0;
-    top: calc(100% + 33px);
+    top: calc(100% + 40px);
   }
   .menubutton .menulink-body {
     width: 150px;
