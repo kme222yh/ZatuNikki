@@ -16,15 +16,7 @@
     </x-slot>
 
     <x-slot name="headerNavlink">
-        <li class="header-navlink-item"><a class="" href="{{ route('about') }}">ざつにっきとは</a></li>
-        @if(Auth::check())
-        <li class="header-navlink-item">
-            @include('layouts.menuButton')
-        </li>
-        @else
-        <li class="header-navlink-item"><a class="" href="{{ route('login') }}">ログイン</a></li>
-        <li class="header-navlink-item"><a class="marked" href="{{ route('register') }}">はじめる</a></li>
-        @endif
+        
     </x-slot>
 
 

@@ -177,6 +177,7 @@ html, body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 .dialog-message {
+  text-align: center;
   font-size: 20px;
   line-height: 1.5;
   color: #FFF7EF;
@@ -426,6 +427,10 @@ html, body {
 }
 .mydiarylist .list-day:hover {
   opacity: 0.5;
+}
+.mydiarylist .list-empty-message {
+  font-size: 25px;
+  color: #7B7B7B;
 }
 @media screen and (max-width: 769px) {
   .mydiarylist-body {

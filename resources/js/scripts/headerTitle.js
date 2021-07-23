@@ -15,5 +15,5 @@ window.addEventListener('load', () => {
     $headerTitle.style.overflow = 'hidden';
     $headerTitle.style.textOverflow = 'ellipsis'
 
-    console.log(parseInt($headerLinkStyle.getPropertyValue('margin-right')));
+    // console.log(parseInt($headerLinkStyle.getPropertyValue('margin-right')));
 })

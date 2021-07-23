@@ -95,13 +95,15 @@
   .main-body {
     min-height: calc(100vh - 50px - 3px);
     flex-direction: column-reverse;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 25px 10px;
+    padding-bottom: 0;
+    overflow: hidden;
   }
 
   .authform {
-    margin-bottom: 55px;
+    margin-bottom: 30px;
     border: none;
     padding: 0;
     width: 270px;
@@ -120,6 +122,8 @@
   .logo {
     max-width: 310px;
     width: 100%;
+    transform: translateY(100px);
+    margin-top: -100px;
   }
 }
 @media screen and (max-width: 481px) {

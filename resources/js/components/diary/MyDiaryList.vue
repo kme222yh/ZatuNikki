@@ -14,6 +14,9 @@
 
             <div class="list">
                 <div class="list-body">
+                    <div class="list-empty" v-if="loading==false && diaries.length==0">
+                        <p class="list-empty-message">日記を書きましょう！</p>
+                    </div>
                     <div class="list-year" v-for="year in reversedKeys(diaries)" :key="year">
                         <ul :id="year+month" class="list-month" v-for="month in reversedKeys(diaries[year])" :key="month">
                             <li class="list-head">{{ year }}年 {{ month }}月</li>
@@ -29,6 +32,8 @@
             </div>
         </div>
     </div>
+
+    <WaitAnimationComponent :display="loading"></WaitAnimationComponent>
 </template>
 
 
@@ -36,7 +41,12 @@
     import { ref, onMounted, filter } from 'vue'
     import { useStore } from 'vuex'
 
+    import WaitAnimationComponent from '../WaitAnimation.vue';
+
     export default {
+        components: {
+            WaitAnimationComponent,
+        },
         props: {
             api: '',
             showurl: '',
@@ -46,7 +56,10 @@
 
             const diaries = ref([]);
 
+            const loading = ref(true);
+
             onMounted(() => {
+                loading.value = true;
                 const url = props.api;
                 axios.get(url).then(res=>{
                     diaries.value = res.data;
@@ -56,6 +69,7 @@
                         type: 'warning',
                     });
                 }).finally(()=>{
+                    loading.value = false
                 });
             });
 
@@ -72,6 +86,8 @@
 
             return {
                 diaries,
+
+                loading,
 
                 formatDate,
 

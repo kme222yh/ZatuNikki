@@ -18290,18 +18290,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _WaitAnimation_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../WaitAnimation.vue */ "./resources/js/components/WaitAnimation.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    WaitAnimationComponent: _WaitAnimation_vue__WEBPACK_IMPORTED_MODULE_1__.default
+  },
   props: {
     api: '',
     showurl: ''
   },
   setup: function setup(props) {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
     var diaries = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      loading.value = true;
       var url = props.api;
       axios.get(url).then(function (res) {
         diaries.value = res.data;
@@ -18310,7 +18317,9 @@ __webpack_require__.r(__webpack_exports__);
           text: 'データの取得に失敗しました',
           type: 'warning'
         });
-      })["finally"](function () {});
+      })["finally"](function () {
+        loading.value = false;
+      });
     });
 
     var formatDate = function formatDate(date, format) {
@@ -18332,6 +18341,7 @@ __webpack_require__.r(__webpack_exports__);
 
     return {
       diaries: diaries,
+      loading: loading,
       formatDate: formatDate,
       getTitle: getTitle,
       reversedKeys: reversedKeys
@@ -18576,32 +18586,8 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle1 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle2 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle3 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle4 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle5 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle6 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle7 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle8 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle9 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle10 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle11 sk-child"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "sk-circle12 sk-child"
-})], -1
+  "class": "loader"
+}, "Loading...", -1
 /* HOISTED */
 );
 
@@ -18749,10 +18735,23 @@ var _hoisted_7 = {
   "class": "list-body"
 };
 var _hoisted_8 = {
+  key: 0,
+  "class": "list-empty"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "list-empty-message"
+}, "日記を書きましょう！", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
   "class": "list-head"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries), function (year) {
+  var _component_WaitAnimationComponent = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("WaitAnimationComponent");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries), function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", {
       "class": "minimap-item",
       key: year
@@ -18772,7 +18771,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ))]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries), function (year) {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [$setup.loading == false && $setup.diaries.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_8, [_hoisted_9])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries), function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       "class": "list-year",
       key: year
@@ -18781,7 +18780,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         id: year + month,
         "class": "list-month",
         key: month
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year) + "年 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(month) + "月", 1
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year) + "年 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(month) + "月", 1
       /* TEXT */
       ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reversedKeys($setup.diaries[year][month]), function (day) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
@@ -18806,7 +18805,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ))]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])]);
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_WaitAnimationComponent, {
+    display: $setup.loading
+  }, null, 8
+  /* PROPS */
+  , ["display"])], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -19234,8 +19239,7 @@ window.addEventListener('load', function () {
   $headerTitle.style.width = parseInt($headerInfoStyle.getPropertyValue('width')) - parseInt($headerLinkStyle.getPropertyValue('width')) - parseInt($headerLinkStyle.getPropertyValue('margin-right')) + 'px';
   $headerTitle.style.whiteSpace = 'nowrap';
   $headerTitle.style.overflow = 'hidden';
-  $headerTitle.style.textOverflow = 'ellipsis';
-  console.log(parseInt($headerLinkStyle.getPropertyValue('margin-right')));
+  $headerTitle.style.textOverflow = 'ellipsis'; // console.log(parseInt($headerLinkStyle.getPropertyValue('margin-right')));
 });
 
 /***/ }),
@@ -19288,9 +19292,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss":
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -19305,7 +19309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".waitanimation {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background-color: #F7C9A8;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  opacity: 0.5;\n}\n.waitanimation.v-enter-active, .waitanimation.v-leave-active {\n  transition: 0.4s;\n}\n.waitanimation.v-enter-from, .waitanimation.v-leave-to {\n  opacity: 0;\n}\n.waitanimation.v-enter-to, .waitanimation.v-leave-from {\n  opacity: 0.5;\n}\n.sk-circle {\n  width: 33vmin;\n  height: 33vmin;\n  position: relative;\n}\n.sk-circle .sk-child {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.sk-circle .sk-child:before {\n  content: \"\";\n  display: block;\n  margin: 0 auto;\n  width: 15%;\n  height: 15%;\n  background-color: #FFF;\n  border-radius: 100%;\n  -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;\n  animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;\n}\n.sk-circle .sk-circle2 {\n  transform: rotate(30deg);\n}\n.sk-circle .sk-circle3 {\n  transform: rotate(60deg);\n}\n.sk-circle .sk-circle4 {\n  transform: rotate(90deg);\n}\n.sk-circle .sk-circle5 {\n  transform: rotate(120deg);\n}\n.sk-circle .sk-circle6 {\n  transform: rotate(150deg);\n}\n.sk-circle .sk-circle7 {\n  transform: rotate(180deg);\n}\n.sk-circle .sk-circle8 {\n  transform: rotate(210deg);\n}\n.sk-circle .sk-circle9 {\n  transform: rotate(240deg);\n}\n.sk-circle .sk-circle10 {\n  transform: rotate(270deg);\n}\n.sk-circle .sk-circle11 {\n  transform: rotate(300deg);\n}\n.sk-circle .sk-circle12 {\n  transform: rotate(330deg);\n}\n.sk-circle .sk-circle2:before {\n  -webkit-animation-delay: -1.1s;\n  animation-delay: -1.1s;\n}\n.sk-circle .sk-circle3:before {\n  -webkit-animation-delay: -1s;\n  animation-delay: -1s;\n}\n.sk-circle .sk-circle4:before {\n  -webkit-animation-delay: -0.9s;\n  animation-delay: -0.9s;\n}\n.sk-circle .sk-circle5:before {\n  -webkit-animation-delay: -0.8s;\n  animation-delay: -0.8s;\n}\n.sk-circle .sk-circle6:before {\n  -webkit-animation-delay: -0.7s;\n  animation-delay: -0.7s;\n}\n.sk-circle .sk-circle7:before {\n  -webkit-animation-delay: -0.6s;\n  animation-delay: -0.6s;\n}\n.sk-circle .sk-circle8:before {\n  -webkit-animation-delay: -0.5s;\n  animation-delay: -0.5s;\n}\n.sk-circle .sk-circle9:before {\n  -webkit-animation-delay: -0.4s;\n  animation-delay: -0.4s;\n}\n.sk-circle .sk-circle10:before {\n  -webkit-animation-delay: -0.3s;\n  animation-delay: -0.3s;\n}\n.sk-circle .sk-circle11:before {\n  -webkit-animation-delay: -0.2s;\n  animation-delay: -0.2s;\n}\n.sk-circle .sk-circle12:before {\n  -webkit-animation-delay: -0.1s;\n  animation-delay: -0.1s;\n}\n@-webkit-keyframes sk-circleBounceDelay {\n0%, 80%, 100% {\n    transform: scale(0);\n}\n40% {\n    transform: scale(1);\n}\n}\n@keyframes sk-circleBounceDelay {\n0%, 80%, 100% {\n    transform: scale(0);\n}\n40% {\n    transform: scale(1);\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".waitanimation {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background-color: #F7C9A8;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  opacity: 0.5;\n}\n.waitanimation.v-enter-active, .waitanimation.v-leave-active {\n  transition: 0.4s;\n}\n.waitanimation.v-enter-from, .waitanimation.v-leave-to {\n  opacity: 0;\n}\n.waitanimation.v-enter-to, .waitanimation.v-leave-from {\n  opacity: 0.5;\n}\n.loader,\n.loader:before,\n.loader:after {\n  background: #ffffff;\n  -webkit-animation: load1 1s infinite ease-in-out;\n  animation: load1 1s infinite ease-in-out;\n  width: 1em;\n  height: 4em;\n}\n.loader {\n  color: #ffffff;\n  text-indent: -9999em;\n  margin: 88px auto;\n  position: relative;\n  font-size: 11px;\n  transform: translateZ(0);\n  -webkit-animation-delay: -0.16s;\n  animation-delay: -0.16s;\n}\n.loader:before,\n.loader:after {\n  position: absolute;\n  top: 0;\n  content: \"\";\n}\n.loader:before {\n  left: -1.5em;\n  -webkit-animation-delay: -0.32s;\n  animation-delay: -0.32s;\n}\n.loader:after {\n  left: 1.5em;\n}\n@-webkit-keyframes load1 {\n0%, 80%, 100% {\n    box-shadow: 0 0;\n    height: 4em;\n}\n40% {\n    box-shadow: 0 -2em;\n    height: 5em;\n}\n}\n@keyframes load1 {\n0%, 80%, 100% {\n    box-shadow: 0 0;\n    height: 4em;\n}\n40% {\n    box-shadow: 0 -2em;\n    height: 5em;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36613,6 +36617,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/scss/about/about.scss":
+/*!*****************************************!*\
+  !*** ./resources/scss/about/about.scss ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/reset.css":
 /*!*********************************!*\
   !*** ./resources/css/reset.css ***!
@@ -36872,9 +36889,9 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss":
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss ***!
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -36885,7 +36902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_17_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_17_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_17_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_18_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_18_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_18_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss");
 
             
 
@@ -36894,11 +36911,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_17_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_17_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_17_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_18_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_18_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_18_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_17_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_17_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_17_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_18_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_18_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_18_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -37656,7 +37673,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_17_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_17_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_17_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-17.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-17.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-17.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_18_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_18_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_18_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WaitAnimation_vue_vue_type_style_index_0_id_77d78c98_lang_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-18.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-18.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-18.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/WaitAnimation.vue?vue&type=style&index=0&id=77d78c98&lang=scss");
 
 
 /***/ }),
@@ -39496,6 +39513,7 @@ var index = {
 /******/ 			"css/top": 0,
 /******/ 			"css/diary": 0,
 /******/ 			"css/base": 0,
+/******/ 			"css/about": 0,
 /******/ 			"css/auth": 0,
 /******/ 			"css/reset": 0,
 /******/ 			"css/error": 0
@@ -39546,13 +39564,14 @@ var index = {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/base/base.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/auth/auth.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/diary/diary.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/top/top.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/error/error.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/css/reset.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/base/base.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/auth/auth.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/diary/diary.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/top/top.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/error/error.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/scss/about/about.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/top","css/diary","css/base","css/about","css/auth","css/reset","css/error"], () => (__webpack_require__("./resources/css/reset.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

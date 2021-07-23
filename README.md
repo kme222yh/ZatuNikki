@@ -25,6 +25,13 @@ npm run watch
 php artisan serve --host 0.0.0.0
 ```
 
+### DB更新するとき
+
+```
+php artisan make:migration add_{column_name}_to_{table_name}_table --table={table_name}
+https://qiita.com/usaginooheso/items/6f307a15b5f7d5dd981f
+```
+
 
 ### コマンドログ
 
