@@ -15,7 +15,8 @@
 
     <x-slot name="headerNavlink">
         <li class="header-navlink-item"><a class="" href="{{ route('about') }}">ざつにっきとは</a></li>
-        <li class="header-navlink-item"><a class="marked" href="{{ route('login') }}">はじめる</a></li>
+        <li class="header-navlink-item"><a class="" href="{{ route('login') }}">ログイン</a></li>
+        <li class="header-navlink-item"><a class="marked" href="{{ route('register') }}">はじめる</a></li>
     </x-slot>
 
 

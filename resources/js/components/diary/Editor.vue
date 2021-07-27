@@ -3,7 +3,9 @@
         <div class="editor-body">
             <p class="editor-head">{{diary.date}}</p>
             <input class="editor-title" type="text" name="" v-model="diary.title" @change="setConfirmChange" placeholder="日記タイトル (空の場合は日付が入ります)">
-            <textarea class="editor-content" name="name" v-model="diary.contents" @input="adjustTextareaHeight" @change="setConfirmChange" placeholder="日記を書きましょう！"></textarea>
+            <div class="editor-content">
+                <textarea class="editor-content-body" name="name" v-model="diary.contents" @input="adjustTextareaHeight" @change="setConfirmChange" placeholder="日記を書きましょう！"></textarea>
+            </div>
             <div v-bind:class="{'editor-publish': 1, 'uncheck': !diary.published}" @click="togglePublish">
                 <span class="check">公開する</span>
                 <span class="uncheck">公開しない</span>

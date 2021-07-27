@@ -18628,14 +18628,17 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "editor-head"
 };
+var _hoisted_4 = {
+  "class": "editor-content"
+};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "check"
 }, "公開する", -1
 /* HOISTED */
 );
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "uncheck"
 }, "公開しない", -1
 /* HOISTED */
@@ -18659,8 +18662,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "日記タイトル (空の場合は日付が入ります)"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.diary.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
-    "class": "editor-content",
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.diary.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+    "class": "editor-content-body",
     name: "name",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.diary.contents = $event;
@@ -18674,7 +18677,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "日記を書きましょう！"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.diary.contents]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.diary.contents]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": {
       'editor-publish': 1,
       'uncheck': !$setup.diary.published
@@ -18682,7 +18685,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[6] || (_cache[6] = function () {
       return $setup.togglePublish && $setup.togglePublish.apply($setup, arguments);
     })
-  }, [_hoisted_4, _hoisted_5], 2
+  }, [_hoisted_5, _hoisted_6], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": "editor-submit",

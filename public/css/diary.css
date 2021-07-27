@@ -243,7 +243,6 @@ html, body {
   background-color: white;
   border-radius: 7px;
   outline: none;
-  padding: 30px 40px;
 }
 .editor-head {
   font-size: 15px;
@@ -259,10 +258,18 @@ html, body {
 }
 .editor-content {
   height: 50vh;
+  background-color: white;
+  border-radius: 7px;
+  padding: 20px 40px;
+  margin-bottom: 40px;
+}
+.editor-content-body {
+  padding: 10px 0px;
+  height: 100%;
+  width: 100%;
+  resize: none;
   font-size: 20px;
   line-height: 2;
-  margin-bottom: 40px;
-  resize: none;
 }
 .editor-publish {
   background-color: #C4F7C1;

@@ -24,7 +24,5 @@
         </div>
     </div>
 
-    <a class="logo" href="/">
-        <img src="{{ asset("images/logo/close_white.png") }}" alt="">
-    </a>
+    <img class="logo" src="{{ asset("images/logo/close_white.png") }}" alt="">
 </x-app-layout>
