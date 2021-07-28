@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use \App\Models\Diary;
 use \App\Http\Requests\DiaryEditRequest;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image; 
 use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\OpenGraph;
 
