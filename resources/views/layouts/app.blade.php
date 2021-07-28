@@ -4,18 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        {!! SEO::generate() !!}
 
         <link rel="stylesheet" href="{{asset('css/reset.css')}}">
         <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="{{asset('css/base.css')}}">
         {{ $css }}
 
-
         <script type="text/javascript">console.log('Welcome to ZatuNikki !!!');</script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-        <title>{{ config('app.name') }}</title>
     </head>
     <body id="app">
 

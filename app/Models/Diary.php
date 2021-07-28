@@ -32,6 +32,27 @@ class Diary extends Model
         }
     }
 
+
+    public function getOmittedTitle($limit = 20){
+        $text = $this->getTitle();
+        if(mb_strlen($text) > $limit) {
+            $text = mb_substr($text,0,$limit);
+            $text.= '･･･' ;
+        }
+        return $text;
+    }
+
+
+    public function getOmittedContents($limit = 130){
+        $text = $this->contents;
+        if(mb_strlen($text) > $limit) {
+            $text = mb_substr($text,0,$limit);
+            // $text.= '･･･' ;
+        }
+        return $text;
+    }
+
+
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);

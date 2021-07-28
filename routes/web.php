@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-use \App\Http\Controllers\DiaryController;
 use \App\Http\Controllers\DefaultController;
+use \App\Http\Controllers\DiaryController;
+use \App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use \App\Http\Controllers\DefaultController;
 */
 
 Route::get('/', [DefaultController::class, 'index'])->name('home');
-Route::get('/about', function(){return view('about');})->name('about');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 
 
@@ -29,7 +30,9 @@ Route::name('diary.')->prefix('diary')->group(function(){
         Route::post('api/save', [DiaryController::class, 'save'])->name('save');
         Route::get('api/list', [DiaryController::class, 'list'])->name('api.list');
         Route::get('delete/{diary}', [DiaryController::class, 'delete'])->name('delete');
+
     });
+    Route::get('{diary}/ogp.png', [DiaryController::class, 'image'])->name('ogp');
     Route::get('show/{diary}', [DiaryController::class, 'show'])->name('show');    // 日記詳細表示
 });
 

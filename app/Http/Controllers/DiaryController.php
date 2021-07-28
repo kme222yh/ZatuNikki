@@ -7,15 +7,22 @@ use App\Providers\RouteServiceProvider;
 use \App\Models\Diary;
 use \App\Http\Requests\DiaryEditRequest;
 use Carbon\Carbon;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Artesaos\SEOTools\Facades\OpenGraph;
 
 class DiaryController extends Controller
 {
 
     public function show(Request $request, Diary $diary){
         if($diary->published){
-            return view('diary.show', ["diary" => $diary, "date" => (new Carbon($diary->date))->format('Y/m/d')]);
+            SEOTools::setTitle($diary->getOmittedTitle());
+            OpenGraph::setTitle($diary->getTitle());
+            OpenGraph::setDescription($diary->getOmittedContents());
+            OpenGraph::addImages([ route('diary.ogp', ['diary' => $diary->id]) ]);
+
+            return view('diary.show', ["diary" => $diary]);
         } elseif($request->user() && $diary->user_id == $request->user()->id) {
-            return view('diary.show', ["diary" => $diary,]);
+            return view('diary.show', ["diary" => $diary]);
         }
         abort(404);
     }
@@ -94,6 +101,37 @@ class DiaryController extends Controller
             $diary->delete();
             return redirect()->route('diary.list');
         }
+    }
+
+
+
+    public function image(Request $request, Diary $diary)
+    {
+        if($diary->published == false)  abort(404);
+
+        $path = public_path('images/ogc_template.png');
+
+        $img = Image::make($path);
+
+        $img->text($diary->getTitle(), 100, 130, function($font) {
+            $font->file(public_path('MPLUS1p-Regular.ttf'));
+            $font->size(50);
+            $font->color('#707070');
+        });
+
+        $img->text($diary->date->format('Y/m/d'), 100, 255, function($font) {
+            $font->file(public_path('MPLUS1p-Regular.ttf'));
+            $font->size(25);
+            $font->color('#707070');
+        });
+
+        $img->text($diary->contents, 100, 380, function($font) {
+            $font->file(public_path('MPLUS1p-Regular.ttf'));
+            $font->size(50);
+            $font->color('#707070');
+        });
+
+        return $img->response();
     }
 
 }

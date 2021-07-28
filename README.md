@@ -37,6 +37,9 @@ https://qiita.com/usaginooheso/items/6f307a15b5f7d5dd981f
 
 ```
 php composer.phar require laravel/breeze --dev
+php composer.phar require intervention/image
+php composer.pahr require artesaos/seotools
+php artisan vendor:publish --provider="Artesaos\SEOTools\Providers\SEOToolsServiceProvider"
 php artisan breeze:install
 npm install
 npm run dev
