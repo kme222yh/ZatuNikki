@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use \App\Models\Diary;
 use \App\Http\Requests\DiaryEditRequest;
 use Carbon\Carbon;
-use Intervention\Image\Facades\Image; 
+use Intervention\Image\Facades\Image;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\OpenGraph;
 
@@ -15,12 +15,10 @@ class DiaryController extends Controller
 {
 
     public function show(Request $request, Diary $diary){
+        SEOTools::setTitle($diary->getOmittedTitle());
         if($diary->published){
-            SEOTools::setTitle($diary->getOmittedTitle());
-            OpenGraph::setTitle($diary->getTitle());
-            OpenGraph::setDescription($diary->getOmittedContents());
+            SEOTools::setDescription($diary->getOmittedContents());
             OpenGraph::addImages([ route('diary.ogp', ['diary' => $diary->id]) ]);
-
             return view('diary.show', ["diary" => $diary]);
         } elseif($request->user() && $diary->user_id == $request->user()->id) {
             return view('diary.show', ["diary" => $diary]);
@@ -32,6 +30,7 @@ class DiaryController extends Controller
 
     // 当日のdiaryが存在するかだけを判断
     public function new(Request $request){
+        SEOTools::setTitle('かく');
         $diary = $request->user()->diaries()->whereDate('date', Carbon::today())->first();
         if($diary){
             return redirect()->route('diary.edit', ['diary' => $diary->id]);
@@ -48,6 +47,7 @@ class DiaryController extends Controller
 
     // 要求されたdiaryの持ち主がユーザーと一致するかどうかだけを判断
     public function edit(Request $request, Diary $diary){
+        SEOTools::setTitle('かく');
         if($diary->user_id != $request->user()->id){
             abort(404);
         } else {
@@ -59,7 +59,11 @@ class DiaryController extends Controller
 
 
 
-    public function list(Request $request){
+    public function list(){
+        SEOTools::setTitle('ふりかえる');
+        return view('diary.list');
+    }
+    public function api_list(Request $request){
         $diaries = $request->user()->diaries()->orderBy('date', 'desc')->get();
         $param = [];
         foreach ($diaries as $key => $diary) {
@@ -70,7 +74,7 @@ class DiaryController extends Controller
 
 
 
-    public function save(DiaryEditRequest $request){
+    public function api_save(DiaryEditRequest $request){
         if(!$request->user()){  // ユーザー判定
             return abort(400);
         }

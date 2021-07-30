@@ -41,7 +41,7 @@ return [
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => 'website',
             'site_name'   => 'ざつにっき',
-            'images'      => ['app_image.png'],
+            'images'      => [env('APP_URL', '').'/app_image.png'],
         ],
     ],
     'twitter' => [
@@ -49,7 +49,7 @@ return [
          * The default values to be used by the twitter cards generator.
          */
         'defaults' => [
-            'card'        => 'summary',
+            'card'        => 'summary_large_image',
             'site'        => '@zatunikki',
         ],
     ],

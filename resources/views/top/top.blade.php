@@ -8,7 +8,7 @@
 
 
     <x-slot name="headerLink">
-        <a href="{{ route('home') }}"> <img src="{{asset('images/logo/text.png')}}" alt=""> </a>
+        <a href="{{ route('home') }}">ざつにっき</a>
     </x-slot>
 
     <x-slot name="headerTitle"></x-slot>

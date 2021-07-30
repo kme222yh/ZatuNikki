@@ -28,7 +28,7 @@ class Diary extends Model
         if($this->title){
             return $this->title;
         } else {
-            return (new Carbon($this->date))->format('Y年m月d日の日記');
+            return $this->date->format('Y年m月d日の日記');
         }
     }
 
@@ -45,6 +45,7 @@ class Diary extends Model
 
     public function getOmittedContents($limit = 130){
         $text = $this->contents;
+        $text = str_replace(PHP_EOL, ' ', $text);
         if(mb_strlen($text) > $limit) {
             $text = mb_substr($text,0,$limit);
             // $text.= '･･･' ;

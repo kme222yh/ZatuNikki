@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class RegisteredUserController extends Controller
 {
@@ -20,6 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
+        SEOTools::setTitle('はじめる');
         return view('auth.register');
     }
 

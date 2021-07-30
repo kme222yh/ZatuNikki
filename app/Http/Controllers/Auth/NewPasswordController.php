@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class NewPasswordController extends Controller
 {
@@ -20,6 +21,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request)
     {
+        SEOTools::setTitle('パスワードをリセット');
         return view('auth.reset-password', ['request' => $request]);
     }
 
