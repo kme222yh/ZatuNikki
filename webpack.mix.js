@@ -11,9 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
+
+mix.js('resources/js/app.js', 'public/js').vue()
+
 mix.postCss('resources/css/reset.css', 'public/css');
 
-mix.js('resources/js/app.js', 'public/js').vue().sass('resources/scss/app.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],});;
-
-
-// mix.sass('resources/scss/app.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],});
+mix.sass('resources/scss/base/base.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
+mix.sass('resources/scss/auth/auth.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
+mix.sass('resources/scss/diary/diary.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
+mix.sass('resources/scss/top/top.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
+mix.sass('resources/scss/error/error.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
+mix.sass('resources/scss/about/about.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})

@@ -1,19 +1,34 @@
 require('./bootstrap');
 
-require('alpinejs');
+// require('alpinejs');
 
 
+import store from './store.js'
 
 
+import { createApp } from 'vue';
+import EditorComponent from './components/diary/Editor.vue';
+import DiaryShowMenu from './components/diary/ShowMenu.vue';
+import WaitAnimationComponent from './components/WaitAnimation.vue';
+import MenuButton from './components/layout/MenuButton.vue';
+import GrayBackground from './components/layout/GrayBackground.vue';
+import Messanger from './components/layout/Messanger.vue';
+import MyDiaryList from './components/diary/MyDiaryList.vue';
 
 
-
-window.Vue = require('vue').default;
-Vue.component('EditorComponent', require('./components/diary/Editor.vue').default);
-Vue.component('DiaryMenuComponent', require('./components/diary/Menu.vue').default);
-Vue.component('WaitAnimationComponent', require('./components/WaitAnimation.vue').default);
-const app = new Vue({
-    el: '#app',
-    created(){
+createApp({
+    components:{
+        WaitAnimationComponent,
+        DiaryShowMenu,
+        EditorComponent,
+        MenuButton,
+        GrayBackground,
+        Messanger,
+        MyDiaryList,
     }
-});
+}).use(store).mount('#app');
+
+
+
+
+require('./scripts/headerTitle');

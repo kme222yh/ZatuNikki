@@ -1,0 +1,72 @@
+@import "../utility";
+@import "../variables";
+
+
+
+.main{
+    border-top: 3px solid #FFF7EF;
+    background-color: #F7C9A8;
+    &-body{
+        min-height: calc(100vh - 80px - 3px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+}
+
+
+
+
+@import "503";
+
+
+
+
+.header{
+    position: static;
+}
+.header-space{
+    display: none;
+}
+
+
+.logo{
+    width: 100%;
+    max-width: 600px;
+    img{
+        width: 100%;
+    }
+}
+
+
+.error{
+    margin-bottom: 50px;
+    color: #FFF7EF;
+    &-title{
+        font-size: 50px;
+    }
+    &-message{
+        font-size: 40px;
+    }
+}
+
+
+
+@include tablet{
+    .main{
+        &-body{
+            min-height: calc(100vh - 50px - 3px);
+        }
+    }
+
+    .error{
+        &-title{
+            font-size: 30px;
+        }
+        &-message{
+            font-size: 20px;
+        }
+    }
+}

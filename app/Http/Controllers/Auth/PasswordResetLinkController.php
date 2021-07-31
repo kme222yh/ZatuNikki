@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class PasswordResetLinkController extends Controller
 {
@@ -15,6 +16,7 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
+        SEOTools::setTitle('パスワードをリセット');
         return view('auth.forgot-password');
     }
 

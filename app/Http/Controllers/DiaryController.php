@@ -7,15 +7,21 @@ use App\Providers\RouteServiceProvider;
 use \App\Models\Diary;
 use \App\Http\Requests\DiaryEditRequest;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Artesaos\SEOTools\Facades\OpenGraph;
 
 class DiaryController extends Controller
 {
 
     public function show(Request $request, Diary $diary){
+        SEOTools::setTitle($diary->getOmittedTitle());
         if($diary->published){
-            return view('diary.view', ["diary" => $diary, "date" => (new Carbon($diary->date))->format('Y/m/d')]);
+            SEOTools::setDescription($diary->getOmittedContents());
+            OpenGraph::addImages([ route('diary.ogp', ['diary' => $diary->id]) ]);
+            return view('diary.show', ["diary" => $diary]);
         } elseif($request->user() && $diary->user_id == $request->user()->id) {
-            return view('diary.view', ["diary" => $diary,]);
+            return view('diary.show', ["diary" => $diary]);
         }
         abort(404);
     }
@@ -24,9 +30,10 @@ class DiaryController extends Controller
 
     // 当日のdiaryが存在するかだけを判断
     public function new(Request $request){
-        $diary = $request->user()->diaries()->whereDate('created_at', Carbon::today())->first();
+        SEOTools::setTitle('かく');
+        $diary = $request->user()->diaries()->whereDate('date', Carbon::today())->first();
         if($diary){
-            return redirect()->route('write.edit', ['diary' => $diary->id]);
+            return redirect()->route('diary.edit', ['diary' => $diary->id]);
         } else {
             $diary = new Diary();
             $diary->setDefault();
@@ -40,6 +47,7 @@ class DiaryController extends Controller
 
     // 要求されたdiaryの持ち主がユーザーと一致するかどうかだけを判断
     public function edit(Request $request, Diary $diary){
+        SEOTools::setTitle('かく');
         if($diary->user_id != $request->user()->id){
             abort(404);
         } else {
@@ -51,30 +59,33 @@ class DiaryController extends Controller
 
 
 
-    public function list(Request $request){
+    public function list(){
+        SEOTools::setTitle('ふりかえる');
+        return view('diary.list');
+    }
+    public function api_list(Request $request){
         $diaries = $request->user()->diaries()->orderBy('date', 'desc')->get();
-        return view('diary.ownlist', [
-            "diaries" => $diaries ?? Null,
-            "date" => Carbon::now()->startOfDay(),
-            "last" => Carbon::now()->startOfDay(),
-            "i" => 0,
-        ]);
+        $param = [];
+        foreach ($diaries as $key => $diary) {
+            $param[$diary->date->year][$diary->date->month][$diary->date->day] = $diary;
+        }
+        return $param;
     }
 
 
 
-    public function save(DiaryEditRequest $request){
+    public function api_save(DiaryEditRequest $request){
         if(!$request->user()){  // ユーザー判定
-            return response(404);
+            return abort(400);
         }
         $validated = $request->validated();
         if($request->id){
             $diary = Diary::find($request->id);
-            if(!$diary){return response(404);}
-            if($diary->user_id != $request->user()->id){return response(400);}
+            if(!$diary){return abort(400);}
+            if($diary->user_id != $request->user()->id){return abort(400);}
         } else {
             $diary = new Diary();
-            if($request->user()->diaries()->whereDate('created_at', Carbon::today())->first()){return response(400);}
+            if($request->user()->diaries()->whereDate('date', Carbon::today())->first()){return abort(400);}
         }
         $diary->title = $request->title;
         $diary->contents = $validated['contents'];
@@ -82,7 +93,7 @@ class DiaryController extends Controller
         $diary->date = $validated['date'];
         $diary->user_id = $request->user()->id;
         $diary->save();
-        return response(200);
+        return $diary;
     }
 
 
@@ -93,8 +104,39 @@ class DiaryController extends Controller
             return redirect()->route('home');
         } else {
             $diary->delete();
-            return redirect()->route('view.list');
+            return redirect()->route('diary.list');
         }
+    }
+
+
+
+    public function image(Request $request, Diary $diary)
+    {
+        if($diary->published == false)  abort(404);
+
+        $path = public_path('images/ogc_template.png');
+
+        $img = Image::make($path);
+
+        $img->text($diary->getTitle(), 100, 130, function($font) {
+            $font->file(public_path('MPLUS1p-Regular.ttf'));
+            $font->size(50);
+            $font->color('#707070');
+        });
+
+        $img->text($diary->date->format('Y/m/d'), 100, 255, function($font) {
+            $font->file(public_path('MPLUS1p-Regular.ttf'));
+            $font->size(25);
+            $font->color('#707070');
+        });
+
+        $img->text($diary->contents, 100, 380, function($font) {
+            $font->file(public_path('MPLUS1p-Regular.ttf'));
+            $font->size(50);
+            $font->color('#707070');
+        });
+
+        return $img->response();
     }
 
 }

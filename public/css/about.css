@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap);
+html, body {
+  height: 100%;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+.header {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+.main-body {
+  background-color: #FFF7EF;
+  min-height: calc(100vh - 80px);
+}
+@media screen and (max-width: 769px) {
+  .main-body {
+    min-height: calc(100vh - 50px);
+  }
+}
+.about {
+  color: #7B7B7B;
+}
+.about-body {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 90px 20px;
+}
+.about-title {
+  font-size: 25px;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+.about-content {
+  font-size: 20px;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+.about-img {
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 769px) {
+  .about-body {
+    padding: 30px 20px;
+  }
+  .about-title {
+    font-size: 20px;
+  }
+  .about-content {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .about-img {
+    margin-bottom: 10px;
+  }
+}

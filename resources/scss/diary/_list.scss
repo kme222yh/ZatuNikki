@@ -1,0 +1,120 @@
+.mydiarylist{
+    &-body{
+        max-width: 750px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        height: calc(100vh - 80px);
+    }
+    .minimap{
+        width: 115px;
+        border-right: 2px solid #7B7B7B;
+        padding: 30px 20px;
+        overflow-y: scroll;
+        @include hide-scrollbar;
+        &-body{
+        }
+        &-item{
+            margin-bottom: 40px;
+        }
+        &-year, &-month{
+            display: block;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #7B7B7B;
+            text-align: right;
+        }
+        &-month{
+            transition: .3s;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+    }
+    .list{
+        width: calc(100% - 115px);
+        padding: 30px 20px;
+        overflow-y: scroll;
+        @include hide-scrollbar;
+        &-month{
+            margin-bottom: 60px;
+        }
+        &-head{
+            font-size: 20px;
+            color: #FFF7EF;
+            background-color: #F7C9A8;
+            padding: 12px 20px;
+            border-radius: 7px;
+            margin-bottom: 15px
+        }
+        &-day{
+            margin: 0 20px;
+            margin-bottom: 15px;
+            a{
+                font-size: 25px;
+                color: #7B7B7B;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%;
+                display: block;
+            }
+            span{
+                width: 80px;
+                display: inline-block;
+            }
+            transition: .3s;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+        &-empty{
+            &-message{
+                font-size: 25px;
+                color: #7B7B7B;
+            }
+        }
+    }
+}
+
+
+
+
+@include tablet{
+    .mydiarylist{
+        &-body{
+            height: calc(100vh - 50px);
+        }
+        .minimap{
+            width: 70px;
+            padding: 15px 0;
+            border-right: 1px solid #7B7B7B;
+            &-year, &-month{
+                font-size: 15px;
+                padding-right: 7px;
+            }
+        }
+        .list{
+            width: calc(100% - 70px);
+            padding: 15px 10px;
+            &-month{
+                margin-bottom: 40px;
+            }
+            &-head{
+                font-size: 12px;
+                padding: 5px 10px;
+                margin-bottom: 10px;
+            }
+            &-day{
+                margin: 0 10px;
+                margin-bottom: 15px;
+                a{
+                    font-size: 20px;
+                }
+                span{
+                    width: 50px;
+                }
+            }
+        }
+    }
+}

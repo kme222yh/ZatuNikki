@@ -1,8 +1,29 @@
-<x-guest-layout>
+<x-app-layout>
 
-    <x-slot name="nav">
-        <a class="navigation-item register" href="{{ route('register') }}">あたらしくはじめる</a>
+    <x-slot name="css">
+        <link rel="stylesheet" href="{{asset('css/auth.css')}}">
     </x-slot>
+
+
+
+
+    <x-slot name="headerLink">
+        <a href="{{ route('home') }}">ざつにっき</a>
+    </x-slot>
+
+    <x-slot name="headerTitle"></x-slot>
+
+    <x-slot name="headerNavlink">
+        <li class="header-navlink-item"><a class="" href="{{ route('about') }}">ざつにっきとは</a></li>
+        <li class="header-navlink-item"><a class="marked" href="{{ route('login') }}">ログイン</a></li>
+    </x-slot>
+
+
+
+
+    <a class="logo" href="/">
+        <img src="{{ asset("images/logo/open_white.png") }}" alt="">
+    </a>
 
     <div class="authform">
         <h2 class="authform-head">パスワードを確認</h2>
@@ -26,4 +47,4 @@
             <button class="authform-button" type="submit" name="button">確認</button>
         </form>
     </div>
-</x-guest-layout>
+</x-app-layout>
