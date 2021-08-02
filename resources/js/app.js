@@ -14,6 +14,7 @@ import MenuButton from './components/layout/MenuButton.vue';
 import GrayBackground from './components/layout/GrayBackground.vue';
 import Messanger from './components/layout/Messanger.vue';
 import MyDiaryList from './components/diary/MyDiaryList.vue';
+import Announcement from './components/logic/Announcement.vue';
 
 
 createApp({
@@ -25,6 +26,7 @@ createApp({
         GrayBackground,
         Messanger,
         MyDiaryList,
+        Announcement,
     }
 }).use(store).mount('#app');
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DefaultController;
 use \App\Http\Controllers\DiaryController;
 use \App\Http\Controllers\AboutController;
+use \App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,14 @@ Route::name('diary.')->prefix('diary')->group(function(){
     });
     Route::get('{diary}/ogp.png', [DiaryController::class, 'image'])->name('ogp');
     Route::get('show/{diary}', [DiaryController::class, 'show'])->name('show');    // 日記詳細表示
+});
+
+
+
+Route::name('announcement.')->prefix('announcement')->group(function(){
+    Route::get('list', [AnnouncementController::class, 'list'])->name('list');
+    Route::get('show/{announcement}', [AnnouncementController::class, 'show'])->name('show');
+    Route::get('api/get', [AnnouncementController::class, 'api_get'])->name('api.get');
 });
 
 

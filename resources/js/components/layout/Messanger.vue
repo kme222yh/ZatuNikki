@@ -7,11 +7,13 @@
                         :class="{
                              warning: message.type=='warning',
                              success: message.type=='success',
+                             news: message.type=='news',
                         }"
                     >
                         <p>
                             <i v-if="message.type=='warning'" class="fas fa-exclamation-circle"></i>
                             <i v-if="message.type=='success'" class="fas fa-check"></i>
+                            <i v-if="message.type=='news'" class="fas fa-rss"></i>
                             {{ message.text }}
                         </p>
                     </li>
@@ -24,7 +26,7 @@
 
 
 <script>
-    import { ref, computed, watch, reactive } from 'vue'
+    import { ref, computed, watch, onMounted } from 'vue'
     import { useStore } from 'vuex'
 
     export default {
@@ -36,7 +38,7 @@
 
             const displayMessage = () => {
                 if(!store.getters.doesExistMessage) return;
-                setTimeout(popMessage, 3000);
+                setTimeout(popMessage, 5000);
             }
 
             watch(messageQueue, displayMessage, {deep: true});

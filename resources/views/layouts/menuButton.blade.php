@@ -6,7 +6,7 @@
         <!-- <li class="menulink-item"><a href="{{ route('diary.new') }}">さがす <i class="fas fa-search"></i></a></li> -->
         <!-- <li class="menulink-item"><a href="{{ route('diary.new') }}">せってい <i class="fas fa-cog"></i></a></li> -->
         <!-- <li class="menulink-item"><a href="{{ route('diary.new') }}">アカウント <i class="fas fa-user"></i></a></li> -->
-        <!-- <li class="menulink-item"><a href="{{ route('diary.new') }}">おしらせ <i class="fas fa-rss"></i></a></li> -->
+        <li class="menulink-item"><a href="{{ route('announcement.list') }}">おしらせ <i class="fas fa-rss"></i></a></li>
 
         <li class="menulink-item bottom">
             <form class="logout" method="POST" action="{{ route('logout') }}">

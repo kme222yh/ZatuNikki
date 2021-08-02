@@ -15,8 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            AnnouncementType::class,
         ]);
-        
-        \App\Models\User::factory(100)->hasDiaries(100)->create();
+
+        \App\Models\User::factory(10)->hasDiaries(500)->create();
+        \App\Models\Announcement::factory(50)->create();
     }
 }

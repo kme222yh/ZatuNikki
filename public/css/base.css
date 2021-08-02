@@ -313,6 +313,9 @@ html, body {
   border-radius: 50px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
+.messanger-item .fas {
+  margin-right: 5px;
+}
 .messanger-item.success {
   background-color: #C4F7C1;
   color: #707070;
@@ -320,6 +323,10 @@ html, body {
 .messanger-item.warning {
   background-color: #F7A79C;
   color: #FFF7EF;
+}
+.messanger-item.news {
+  background-color: #8FEEF7;
+  color: #707070;
 }
 @media screen and (max-width: 769px) {
   .messanger {

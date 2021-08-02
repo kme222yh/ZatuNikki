@@ -13,4 +13,8 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
+    $router->resource('/diary', 'DiaryController');
+    $router->resource('announcement-types', 'AnnoucementTypeController');
+    $router->resource('announcements', 'AnnoucementController');
+
 });

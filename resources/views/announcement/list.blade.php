@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="css">
-        <link rel="stylesheet" href="{{asset('css/top.css')}}">
+        <link rel="stylesheet" href="{{asset('css/announcement.css')}}">
     </x-slot>
 
 
@@ -25,11 +25,5 @@
         @endif
     </x-slot>
 
-
-
-
-    @include('top.diaryList')
-
-    <announcement api="{{ route('announcement.api.get') }}"></announcement>
 
 </x-app-layout>

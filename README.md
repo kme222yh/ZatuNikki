@@ -35,15 +35,29 @@ php artisan make:migration add_{column_name}_to_{table_name}_table --table={tabl
 https://qiita.com/usaginooheso/items/6f307a15b5f7d5dd981f
 ```
 
+### DBリフレッシュするとき（シードも）
+
+```
+php artisan migrate:refresh --seed
+php artisan admin:install
+```
+
 
 ### コマンドログ
 
 ```
 php composer.phar require laravel/breeze --dev
+php artisan breeze:install
+
 php composer.phar require intervention/image
+
 php composer.pahr require artesaos/seotools
 php artisan vendor:publish --provider="Artesaos\SEOTools\Providers\SEOToolsServiceProvider"
-php artisan breeze:install
+
+php composer require encore/laravel-admin
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+php artisan admin:install
+
 npm install
 npm run dev
 ```
