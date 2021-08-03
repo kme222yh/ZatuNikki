@@ -54,6 +54,19 @@ class Diary extends Model
     }
 
 
+    public function getContentOnly5Rows($combine = false){
+        $text = $this->contents;
+        $texts = explode("\n", $text);
+        $texts = array_slice($texts, 0, 5);
+        if($combine){
+            $text = implode("\n", $texts);
+            return $text;
+        } else {
+            return $texts;
+        }
+    }
+
+
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);

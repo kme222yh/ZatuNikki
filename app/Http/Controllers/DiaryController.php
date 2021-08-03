@@ -114,7 +114,7 @@ class DiaryController extends Controller
     {
         if($diary->published == false)  abort(404);
 
-        $path = public_path('images/ogc_template.png');
+        $path = public_path('images/ogp_template.png');
 
         $img = Image::make($path);
 
@@ -124,17 +124,22 @@ class DiaryController extends Controller
             $font->color('#707070');
         });
 
-        $img->text($diary->date->format('Y/m/d'), 100, 255, function($font) {
+        $img->text($diary->date->format('Y/m/d'), 100, 248, function($font) {
             $font->file(public_path('MPLUS1p-Regular.ttf'));
             $font->size(25);
             $font->color('#707070');
         });
 
-        $img->text($diary->contents, 100, 380, function($font) {
-            $font->file(public_path('MPLUS1p-Regular.ttf'));
-            $font->size(50);
-            $font->color('#707070');
-        });
+        $y = 380;
+        $dy = 81;
+        foreach($diary->getContentOnly5Rows() as $text){
+            $img->text($text, 100, $y, function($font) {
+                $font->file(public_path('MPLUS1p-Regular.ttf'));
+                $font->size(50);
+                $font->color('#707070');
+            });
+            $y+=$dy;
+        }
 
         return $img->response();
     }

@@ -12,7 +12,7 @@
     </x-slot>
 
     <x-slot name="headerTitle">
-        {{ $diary->getTitle() }}
+        {!! e($diary->getTitle()) !!}
     </x-slot>
 
     <x-slot name="headerNavlink">
@@ -33,7 +33,7 @@
     <div class="diaryshow">
         <div class="diaryshow-body">
             <h2 class="diaryshow-title">
-                {{ $diary->getTitle() }}
+                {!! e($diary->getTitle()) !!}
             </h2>
             <p class="diaryshow-date">
                 {{ $diary->date->format('Y/m/d') }}

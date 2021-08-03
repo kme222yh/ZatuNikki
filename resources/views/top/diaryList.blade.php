@@ -9,9 +9,9 @@
         @foreach ($diaries as $diary)
         <article class="diarylist-item">
             <a href="{{ route('diary.show', ['diary' => $diary->id]) }}"></a>
-            <h2 class="diarylist-item-title">{{ $diary->getTitle() }}</h2>
+            <h2 class="diarylist-item-title">{!! e($diary->getTitle()) !!}</h2>
             <p class="diarylist-item-date">{{ $diary->date->format('Y/m/d') }}</p>
-            <p class="diarylist-item-contents">{!! nl2br(e($diary->contents)) !!}</p>
+            <p class="diarylist-item-contents">{!! nl2br(e($diary->getContentOnly5Rows(true))) !!}</p>
         </article>
         @endforeach
     </div>
