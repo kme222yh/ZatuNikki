@@ -40,9 +40,12 @@ Route::name('diary.')->prefix('diary')->group(function(){
 
 
 Route::name('announcement.')->prefix('announcement')->group(function(){
-    Route::get('list', [AnnouncementController::class, 'list'])->name('list');
-    Route::get('show/{announcement}', [AnnouncementController::class, 'show'])->name('show');
-    Route::get('api/get', [AnnouncementController::class, 'api_get'])->name('api.get');
+    Route::middleware(['auth'])->group(function(){
+        Route::get('list', [AnnouncementController::class, 'list'])->name('list');
+        Route::get('show/{announcement}', [AnnouncementController::class, 'show'])->name('show');
+        Route::get('api/list', [AnnouncementController::class, 'api_list'])->name('api.list');
+        Route::get('api/get', [AnnouncementController::class, 'api_get'])->name('api.get');
+    });
 });
 
 

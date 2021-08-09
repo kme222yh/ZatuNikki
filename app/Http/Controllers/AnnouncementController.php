@@ -4,26 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\Announcement;
-// use \App\Models\AnnoucementType;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 
 class AnnouncementController extends Controller
 {
     function list(){
-        $announcements = Announcement::all();
-        // var_dump($announcements);
-
-        return view('announcement.list', [
-            "announcements" => $announcements,
-        ]);
+        SEOTools::setTitle('おしらせ');
+        return view('announcement.list');
     }
 
 
 
-    function show(){
-        $announcement = Announcement::first();
-        // var_dump($announcement);
-
+    function show(Announcement $announcement){
+        SEOTools::setTitle($announcement->getOmittedTitle());
         return view('announcement.show', [
             "announcement" => $announcement,
         ]);
@@ -31,13 +27,27 @@ class AnnouncementController extends Controller
 
 
 
+    function api_list(Request $request){
+        $validator = Validator::make($request->query(), [
+            'n' => ['required', 'numeric', 'min:10'],
+            'page' => ['required', 'numeric', 'min:1'],
+        ]);
+        if ($validator->fails())    abort(404);
+
+        return Announcement::orderBy('updated_at', 'desc')->paginate($request->n);
+    }
+
+
+
     function api_get(Request $request){
-        if(!$request->user())   return;
-        // Annoucement::where('updated_at', '<=', $request->user()->last_login_at)->
-        //                 orderBy('updated_at', 'desc')->
-        //                 take(1)->
-        //                 get();
-        $annoucement = Announcement::orderBy('updated_at', 'desc')->first();
-        return $annoucement;
+        $announcement = null;
+        if(!$request->user()->announcement_last_seen){
+            $announcement = Announcement::first();
+        } else {
+            $announcement = Announcement::where('updated_at', '>', $request->user()->announcement_last_seen)->first();
+        }
+        $request->user()->announcement_last_seen = Carbon::now()->toDateTimeString();
+        $request->user()->save();
+        return $announcement;
     }
 }

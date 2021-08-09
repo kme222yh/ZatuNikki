@@ -8,10 +8,12 @@
 
 
     <x-slot name="headerLink">
-        <a href="{{ route('home') }}">ざつにっき</a>
+        <a href="javascript:window.history.back(-1)"><i class="fas fa-long-arrow-alt-left"></i></a>
     </x-slot>
 
-    <x-slot name="headerTitle"></x-slot>
+    <x-slot name="headerTitle">
+        おしらせ <i class="fas fa-rss"></i>
+    </x-slot>
 
     <x-slot name="headerNavlink">
         <li class="header-navlink-item"><a class="" href="{{ route('about') }}">ざつにっきとは</a></li>
@@ -24,6 +26,9 @@
         <li class="header-navlink-item"><a class="marked" href="{{ route('register') }}">はじめる</a></li>
         @endif
     </x-slot>
+
+
+    <announcement-list api="{{ route('announcement.api.list') }}" showurl="{{ url('/announcement/show') }}"></announcement-list>
 
 
 </x-app-layout>

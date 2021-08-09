@@ -11,6 +11,17 @@ class Announcement extends Model
 
 
 
+    public function getOmittedTitle($limit = 20){
+        $text = $this->title;
+        if(mb_strlen($text) > $limit) {
+            $text = mb_substr($text,0,$limit);
+            $text.= '･･･' ;
+        }
+        return $text;
+    }
+
+
+
     public function type()
     {
         return $this->belongsTo(AnnouncementType::class, 'announcement_type_id');
