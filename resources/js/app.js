@@ -16,6 +16,7 @@ import Messanger from './components/layout/Messanger.vue';
 import MyDiaryList from './components/diary/MyDiaryList.vue';
 import LogicAnnouncement from './components/logic/Announcement.vue';
 import AnnouncementList from './components/announcement/List.vue';
+import SettingAccountDelete from './components/setting/account/Delete.vue';
 
 
 createApp({
@@ -29,6 +30,7 @@ createApp({
         MyDiaryList,
         LogicAnnouncement,
         AnnouncementList,
+        SettingAccountDelete,
     }
 }).use(store).mount('#app');
 

@@ -6,6 +6,7 @@ use \App\Http\Controllers\DefaultController;
 use \App\Http\Controllers\DiaryController;
 use \App\Http\Controllers\AboutController;
 use \App\Http\Controllers\AnnouncementController;
+use \App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,15 @@ Route::name('announcement.')->prefix('announcement')->group(function(){
         Route::get('show/{announcement}', [AnnouncementController::class, 'show'])->name('show');
         Route::get('api/list', [AnnouncementController::class, 'api_list'])->name('api.list');
         Route::get('api/get', [AnnouncementController::class, 'api_get'])->name('api.get');
+    });
+});
+
+
+
+Route::name('setting.')->prefix('setting')->group(function(){
+    Route::middleware(['auth'])->group(function(){
+        Route::get('', [SettingController::class, 'index'])->name('index');
+        Route::get('account', [SettingController::class, 'account'])->name('account');
     });
 });
 

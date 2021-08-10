@@ -1,0 +1,41 @@
+@import '../diary/dialog';
+
+
+
+
+.dialog{
+    &-item{
+        a{
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+        &.disabled{
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    &-input{
+        font-size: 15px;
+        color: #7B7B7B;
+        background-color: white;
+        border-radius: 7px;
+        padding: 10px 15px;
+        width: 330px;
+        margin-bottom: 40px;
+    }
+}
+
+
+
+
+@include mobile{
+    .dialog{
+        &-input{
+            font-size: 12px;
+            margin-bottom: 30px;
+            width: 260px;
+        }
+    }
+}

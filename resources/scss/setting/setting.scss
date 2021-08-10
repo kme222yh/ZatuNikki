@@ -1,0 +1,108 @@
+@import "../utility";
+@import "../variables";
+
+
+
+@import "account";
+
+
+
+
+
+.header{
+    position: static;
+}
+.header-space{
+    display: none;
+}
+
+
+
+
+
+
+.setting{
+    border-top: 3px solid #FFF7EF;
+    color: #FFF7EF;
+    background-color: #F7C9A8;
+    height: calc(100vh - 80px);
+    &-body{
+        height: 100%;
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    &-sidemenu{
+        width: 200px;
+        height: 100%;
+        font-size: 20px;
+        overflow-y: scroll;
+        &-item{
+            border-bottom: 2px solid #FFF7EF;
+            a{
+                padding: 15px 20px;
+                display: block;
+                transition: .3s;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+
+    &-content{
+        margin-right: 200px;
+        flex-grow: 1;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) inset;
+        height: 100%;
+        font-size: 20px;
+        overflow-y: scroll;
+        &-item{
+            padding: 0 10px;
+            border-bottom: 2px solid #FFF7EF;
+            a{
+                padding: 20px 10px;
+                display: block;
+                transition: .3s;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+@include laptop{
+    .setting{
+        &-content{
+            margin-right: 100px;
+        }
+    }
+}
+
+
+@include tablet{
+    .setting{
+        min-height: calc(100vh - 50px);
+        &-sidemenu{
+            width: 130px;
+            font-size: 15px;
+            &-item a{
+                padding: 15px 20px;
+            }
+        }
+        &-content{
+            margin-right: 0;
+            font-size: 15px;
+        }
+    }
+}

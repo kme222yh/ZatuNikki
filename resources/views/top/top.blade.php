@@ -31,7 +31,7 @@
     @include('top.diaryList')
 
 
-
+    @if(Auth::check())
     <logic-announcement api="{{ route('announcement.api.get') }}"></logic-announcement>
-
+    @endif
 </x-app-layout>
