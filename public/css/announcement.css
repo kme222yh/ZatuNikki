@@ -1,0 +1,180 @@
+.announcementlist {
+  height: calc(100vh - 80px);
+  padding: 50px 30px;
+  color: #FFF7EF;
+}
+.announcementlist-body {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #F7C9A8;
+  border-radius: 7px;
+  padding: 40px 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.announcementlist .list {
+  width: 100%;
+  height: calc(100% - 70px);
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.announcementlist .list::-webkit-scrollbar {
+  display: none;
+}
+.announcementlist .list-date {
+  margin-right: 30px;
+}
+.announcementlist .list-item {
+  border-bottom: 2px solid #FFF7EF;
+}
+.announcementlist .list-item a {
+  font-size: 20px;
+  padding: 20px 0;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.announcementlist .list-item:first-child a {
+  padding-top: 10px;
+}
+.announcementlist .list-item:last-child {
+  border: none;
+}
+.announcementlist .list-item:last-child a {
+  padding-bottom: 10px;
+}
+.announcementlist .list-empty-message {
+  font-size: 20px;
+}
+.announcementlist .pagination {
+  width: 100%;
+}
+.announcementlist .pagination-body {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.announcementlist .pagination-links {
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.announcementlist .pagination-links::-webkit-scrollbar {
+  display: none;
+}
+.announcementlist .pagination-links-body {
+  display: flex;
+  justify-content: flex-start;
+}
+.announcementlist .pagination-next, .announcementlist .pagination-prev, .announcementlist .pagination-page {
+  display: block;
+  height: 30px;
+  margin: 0 10px;
+}
+.announcementlist .pagination-page {
+  font-size: 20px;
+  border: 2px solid #FFF7EF;
+  width: 30px;
+  line-height: 27px;
+  text-align: center;
+  border-radius: 7px;
+  margin: 0 10px;
+  transition: 0.3s;
+}
+.announcementlist .pagination-page.active, .announcementlist .pagination-page:hover {
+  color: #F7C9A8;
+  background-color: #FFF7EF;
+}
+.announcementlist .pagination-next, .announcementlist .pagination-prev {
+  font-size: 30px;
+}
+.announcementlist .pagination-next i, .announcementlist .pagination-prev i {
+  transform: translateY(-2px);
+  pointer-events: none;
+}
+@media screen and (max-width: 769px) {
+  .announcementlist {
+    height: calc(100vh - 50px);
+    padding: 40px 30px;
+  }
+  .announcementlist-body {
+    padding: 20px 15px;
+    padding-bottom: 35px;
+  }
+  .announcementlist .list {
+    height: calc(100% - 60px);
+  }
+  .announcementlist .list-item a {
+    font-size: 15px;
+    padding: 15px 0;
+  }
+  .announcementlist .list-item:first-child a {
+    padding-top: 5px;
+  }
+  .announcementlist .list-item:last-child {
+    border: none;
+  }
+  .announcementlist .list-item:last-child a {
+    padding-bottom: 5px;
+  }
+  .announcementlist .list-empty-message {
+    font-size: 15px;
+  }
+  .announcementlist .pagination-next, .announcementlist .pagination-prev, .announcementlist .pagination-page {
+    height: 20px;
+  }
+  .announcementlist .pagination-page {
+    font-size: 12px;
+    width: 20px;
+    line-height: 16px;
+  }
+  .announcementlist .pagination-next, .announcementlist .pagination-prev {
+    font-size: 30px;
+  }
+  .announcementlist .pagination-next i, .announcementlist .pagination-prev i {
+    transform: translateY(-7px);
+  }
+}
+.announcementshow {
+  min-height: calc(100vh - 80px);
+  border-top: 3px solid #FFF7EF;
+  background-color: #F7C9A8;
+  padding: 50px 30px;
+}
+.announcementshow-body {
+  background-color: #FFF7EF;
+  border-radius: 7px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 50px;
+  color: #7B7B7B;
+  font-size: 20px;
+}
+.announcementshow-title {
+  margin-bottom: 50px;
+}
+.announcementshow-content {
+  line-height: 1.7;
+}
+@media screen and (max-width: 769px) {
+  .announcementshow {
+    height: calc(100vh - 50px);
+    padding: 40px 30px;
+  }
+  .announcementshow-body {
+    padding: 30px 20px;
+    font-size: 15px;
+  }
+  .announcementshow-title {
+    margin-bottom: 40px;
+  }
+}

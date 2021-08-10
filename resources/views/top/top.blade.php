@@ -30,4 +30,8 @@
 
     @include('top.diaryList')
 
+
+
+    <logic-announcement api="{{ route('announcement.api.get') }}"></logic-announcement>
+
 </x-app-layout>

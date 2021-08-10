@@ -32,3 +32,4 @@ mix.sass('resources/scss/diary/diary.scss', 'public/css').options({postCss: [req
 mix.sass('resources/scss/top/top.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
 mix.sass('resources/scss/error/error.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
 mix.sass('resources/scss/about/about.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
+mix.sass('resources/scss/announcement/announcement.scss', 'public/css').options({postCss: [require("autoprefixer"), require("postcss-import")],})
