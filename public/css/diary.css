@@ -339,18 +339,20 @@ html, body {
   .editor-body {
     padding: 40px 30px;
   }
-  .editor input, .editor textarea {
-    padding: 20px 15px;
-  }
   .editor-head {
     margin-left: 15px;
     font-size: 12px;
   }
   .editor-title {
     font-size: 20px;
+    padding: 20px 15px;
   }
   .editor-content {
     font-size: 15px;
+    padding: 15px 15px;
+  }
+  .editor-content-body {
+    padding: 5px 0px;
   }
   .editor-publish {
     font-size: 15px;

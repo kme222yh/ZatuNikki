@@ -15,7 +15,7 @@
                 </ul>
             </div>
 
-            <div class="pagination">
+            <div class="pagination" v-if="page_links.length>1">
                 <div class="pagination-body">
                     <a class="pagination-prev" @click.prevent="fetchAnnouncements" :href="prev_page_url" v-if="prev_page_url">
                         <i class="fas fa-caret-left"></i>
