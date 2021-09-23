@@ -39,7 +39,7 @@
                 {{ $diary->date->format('Y/m/d') }}
             </p>
             <p class="diaryshow-content">
-                {!! nl2br(e($diary->contents)) !!}
+                {!! url2aTag(nl2br(e($diary->contents))) !!}
             </p>
         </div>
     </div>
