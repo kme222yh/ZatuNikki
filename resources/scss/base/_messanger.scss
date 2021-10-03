@@ -21,21 +21,18 @@
         &.v-enter-active, &.v-leave-active{
             transition: .3s;
         }
-        &.v-enter-from{
+        &.v-enter-from, &.v-leave-to{
             opacity: 0;
-            transform: translateY(-30px);
             max-height: 0;
             margin-bottom: 0;
         }
+        &.v-enter-from{transform: translateY(-30px);}
+        &.v-leave-to{transform: translateY(10px);}
         &.v-enter-to, &.v-leave-from{
             opacity: 1;
             max-height: 53px;
             transform: none;
             margin-bottom: 20px;
-        }
-        &.v-leave-to{
-            opacity: 0;
-            transform: translateY(10px);
         }
     }
     &-item{

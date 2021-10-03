@@ -21,13 +21,13 @@ export default createStore({
           state.nowOpened = null;
       },
 
+
       pushMessage(state, payload){
-          payload.key = (new Date()).getTime();
           state.messageQueue.push(payload);
       },
   },
   getters: {
-      processedMessage(state){return state.messageQueue.shift();},
+      popMessage(state){return state.messageQueue.shift();},
       doesExistMessage(state){return state.messageQueue.length;},
   }
 

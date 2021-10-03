@@ -2,8 +2,8 @@
     <div class="messanger">
         <ul class="messanger-body">
             <transition-group>
-                <li tag="li" name="messgelist" class="messanger-itemwrapper" v-for="message in messageQueue" :key="message.key">
-                    <li class="messanger-item" @click="popMessage"
+                <li tag="li" name="messgelist" class="messanger-itemwrapper" v-for="message in messages" :key="message.key">
+                    <li class="messanger-item" @click="processMessage(message.key)"
                         :class="{
                              warning: message.type=='warning',
                              success: message.type=='success',
@@ -25,27 +25,50 @@
 
 
 
+
 <script>
-    import { ref, computed, watch, onMounted } from 'vue'
+/*
+ref = [
+    {
+        text: '',
+        type: '',
+        key: null,
+        timeoutId,
+    }
+]
+*/
+
+    import { ref, computed, watch } from 'vue'
     import { useStore } from 'vuex'
 
     export default {
         setup() {
+            const messages = ref([]);
+
             const store = useStore();
             const messageQueue = computed(() => store.state.messageQueue);
 
-            const popMessage = () => store.getters.processedMessage;
+            const processMessage = (key) => {
+                const index = messages.value.findIndex(message => message.key == key);
+                clearTimeout(messages.value[index].timeoutId);
+                messages.value.splice(index, 1);
+            };
+            const getMessage = () => {
+                if(store.getters.doesExistMessage == false) return;
+                let message = store.getters.popMessage;
+                message.key = (new Date()).getTime();
+                message.timeoutId = setTimeout(()=>{
+                    processMessage(message.key);
+                }, 5000);
+                messages.value.push(message);
+            };
 
-            const displayMessage = () => {
-                if(!store.getters.doesExistMessage) return;
-                setTimeout(popMessage, 5000);
-            }
+            watch(messageQueue, getMessage, {deep: true});
 
-            watch(messageQueue, displayMessage, {deep: true});
 
             return {
-                messageQueue,
-                popMessage
+                messages,
+                processMessage
             }
         },
     }
