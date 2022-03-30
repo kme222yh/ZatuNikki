@@ -86,3 +86,24 @@ html, body{
         }
     }
 }
+
+
+
+
+.authform-button{
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border: 1px solid;
+    border-radius: 7px;
+    height: 45px;
+    margin-top: 15px;
+    font-size: 15px;
+    @include hover{
+        color: $body-bg;
+        background-color: #7B7B7B;;
+        opacity: 0.6;
+    }
+    cursor: pointer;
+}
