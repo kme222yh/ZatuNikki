@@ -39,7 +39,7 @@
             <img class="about-img" src="{{ asset("images/logo/open_gray.png") }}" alt="">
 
             @if(Auth::check())
-            <button class="authform-button" type="submit" name="button">にっきをかく</button>
+            <a href="{{ route('diary.new') }}" class="authform-button" >にっきをかく</a>
             @endif
         </div>
     </div>

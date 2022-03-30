@@ -91,13 +91,14 @@ html, body{
 
 
 .authform-button{
+    display: block;
     text-align: center;
     width: 100%;
     box-sizing: border-box;
     border: none;
     border: 1px solid;
     border-radius: 7px;
-    height: 45px;
+    line-height: 45px;
     margin-top: 15px;
     font-size: 15px;
     @include hover{
