@@ -33,6 +33,11 @@
         @csrf
         <div class="editor-body">
             <input class="editor-title" type="text" name="title" placeholder="本タイトル" value="{{old('title', $book->title)}}" required>
+            <select class="editor-title" name="book_type_id">
+                @foreach($types as $type)
+                <option value="{{$type->id}}" @if($type->id==old('book_type_id', $book->book_type_id)) selected @endif >{{$type->name}}</option>
+                @endforeach
+            </select>
             <div class="editor-content">
                 <textarea class="editor-content-body" name="discription" placeholder="本の詳細など" value="{{old('discription', $book->discription)}}"></textarea>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -29,7 +30,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('book.book.new');
+        $types = DB::table('book_types')->select(['id', 'name'])->get();
+        return view('book.book.new', ['types'=>$types]);
     }
 
     /**
@@ -43,7 +45,7 @@ class BookController extends Controller
         $book = new Book;
         $book->title = $request->title;
         $book->discription = $request->discription;
-        $book->book_type_id = 1;
+        $book->book_type_id = $request->book_type_id;
         $book->user_id = $request->user()->id;
         $book->save();
         return redirect()->route('book.book.list');
@@ -70,7 +72,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('book.book.edit', ['book' => $book]);
+        $types = DB::table('book_types')->select(['id', 'name'])->get();
+        return view('book.book.edit', ['book' => $book, 'types'=>$types]);
     }
 
     /**
@@ -84,7 +87,7 @@ class BookController extends Controller
     {
         $book->title = $request->title;
         $book->discription = $request->discription;
-        $book->book_type_id = 1;
+        $book->book_type_id = $request->book_type_id;
         $book->save();
         return redirect()->route('book.book.list');
     }

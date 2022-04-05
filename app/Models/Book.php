@@ -14,4 +14,9 @@ class Book extends Model
     {
         return $this->hasMany(\App\Models\Reading::class);
     }
+    
+    public function bookType()
+    {
+        return $this->belongsTo(\App\Models\BookType::class);
+    }
 }

@@ -35,6 +35,9 @@
             <h2 class="diaryshow-title">
                 {!! e($book->title) !!}
             </h2>
+            <p class="diaryshow-date">
+                タイプ：{!! e($book->bookType->name) !!}
+            </p>
             <p class="diaryshow-content">
                 {!! url2aTag(nl2br(e($book->discription))) !!}
             </p>

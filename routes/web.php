@@ -19,6 +19,6 @@ use \App\Http\Controllers\SettingController;
 |
 */
 
-require __DIR__.'/nikki.php';
-require __DIR__.'/book.php';
+require __DIR__.'/web/nikki.php';
+require __DIR__.'/web/book.php';
 require __DIR__.'/auth.php';

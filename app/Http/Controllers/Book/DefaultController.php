@@ -27,8 +27,6 @@ class DefaultController extends Controller
                 return false;
             });
         }
-        // var_dump($recomendations);
-        // exit;
         return view('book.top', ['recomendations'=>$recomendations]);
     }
 }

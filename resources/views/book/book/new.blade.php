@@ -33,6 +33,11 @@
         @csrf
         <div class="editor-body">
             <input class="editor-title" type="text" name="title" placeholder="本タイトル" required>
+            <select class="editor-title" name="book_type_id">
+                @foreach($types as $type)
+                <option value="{{$type->id}}">{{$type->name}}</option>
+                @endforeach
+            </select>
             <div class="editor-content">
                 <textarea class="editor-content-body" name="discription" placeholder="本の詳細など"></textarea>
             </div>

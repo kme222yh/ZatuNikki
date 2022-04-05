@@ -17,5 +17,10 @@ class BookTypeSeeder extends Seeder
         $bt = new BookType();
         $bt->name = 'book';
         $bt->save();
+
+
+        $bt = new BookType();
+        $bt->name = 'web';
+        $bt->save();
     }
 }
