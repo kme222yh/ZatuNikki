@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Diary;
+use App\Models\Reading;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-class DiaryFactory extends Factory
+class ReadingFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Diary::class;
+    protected $model = Reading::class;
 
     protected $i=0;
 
@@ -26,10 +25,9 @@ class DiaryFactory extends Factory
     public function definition()
     {
         return [
-            'title' => "タイトルタイトルタイトル",
+            'title' => "かんそう".$this->i,
             'contents' => $this->faker->paragraph(),
-            'published' => $this->faker->boolean(50),
-            'date' => Carbon::now()->addDay(-$this->i++)
+            'updated_at' => Carbon::now()->addDay(-$this->i++),
         ];
     }
 }

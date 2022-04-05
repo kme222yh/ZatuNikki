@@ -7,7 +7,7 @@
         {!! SEO::generate() !!}
 
         <link rel="stylesheet" href="{{asset('css/reset.css')}}">
-        <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="{{asset('css/base.css')}}">
         {{ $css }}
 

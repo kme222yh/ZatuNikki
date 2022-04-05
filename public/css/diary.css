@@ -1,2 +1,482 @@
 @import url(https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap);
-body,html{font-family:M PLUS Rounded\ 1c,sans-serif;height:100%}.header{box-shadow:0 3px 6px rgba(0,0,0,.16)}.main-body{background-color:#fff7ef;min-height:calc(100vh - 80px)}@media screen and (max-width:769px){.main-body{min-height:calc(100vh - 50px)}}.diaryshow{color:#7b7b7b}.diaryshow-body{box-sizing:border-box;margin:0 auto;max-width:600px;padding:90px 20px;width:100vw}.diaryshow-content,.diaryshow-date,.diaryshow-title{margin-bottom:40px}.diaryshow-title{font-size:25px;line-height:1}.diaryshow-date{font-size:15px}.diaryshow-content{font-size:20px;line-height:2}.diaryshow-content a{color:#8fb8f7}@media screen and (max-width:769px){.diaryshow-body{padding:30px 20px}.diaryshow-title{font-size:20px}.diaryshow-date{font-size:12px}.diaryshow-content{font-size:15px}}.showmenu{bottom:50px;position:fixed;right:50%;transform:translateX(50%) translateX(350px);z-index:10}.showmenu-body{height:60px;position:relative;width:60px}.showmenu-head,.showmenu-item{background-color:#f7c9a8;border-radius:100px;bottom:0;height:100%;position:absolute;right:0;width:100%}.showmenu-head>a,.showmenu-head>p,.showmenu-item>a,.showmenu-item>p{color:#fff7ef;display:block;font-size:30px;line-height:60px;text-align:center}.showmenu-item{transition:.3s;z-index:1}.showmenu-item:nth-child(3){transition-delay:.05s}.showmenu-item:nth-child(4){transition-delay:.1s}.showmenu-head{cursor:pointer;z-index:2}.opened .showmenu-item,.showmenu-head{box-shadow:0 3px 6px rgba(0,0,0,.16)}.opened .showmenu-item:nth-child(2){transform:translateY(-200%)}.opened .showmenu-item:nth-child(3){transform:rotate(45deg) translateX(-200%) rotate(-45deg)}.opened .showmenu-item:nth-child(4){transform:translateX(-200%)}@media screen and (max-width:1000px){.showmenu{bottom:30px;right:20px;transform:none}}.diarymenu{bottom:100px;position:fixed;right:100px}.diarymenu li{list-style:none}.diarymenu-body{position:relative}.diarymenu-head,.diarymenu-item{background-color:#f7c9a8;border-radius:100px;bottom:0;cursor:pointer;height:100px;position:absolute;right:0;text-align:center;width:100px;z-index:1}.diarymenu-head a,.diarymenu-head p,.diarymenu-item a,.diarymenu-item p{color:#fff;display:block;line-height:100px;text-decoration:none}.diarymenu-item{transition:.3s;z-index:0}.diarymenu.opened .diarymenu-item{bottom:130px}.diarymenu.opened .diarymenu-item:last-child{bottom:260px}.dialog{left:50%;margin:0 auto;max-width:640px;padding:0 20px;position:fixed;top:200px;transform:translateX(-50%);width:100vw;z-index:10}.dialog-body{align-items:center;background-color:#f7c9a8;border-radius:7px;box-shadow:0 3px 6px rgba(0,0,0,.16);display:flex;flex-direction:column;min-height:100px;padding:30px 0;width:100%}.dialog-message{color:#fff7ef;font-size:20px;line-height:1.5;margin-bottom:20px;text-align:center}.dialog-items{display:flex;justify-content:center}.dialog-item{background-color:#ff9c57;border-radius:7px;color:#fff7ef;display:block;font-size:15px;height:40px;line-height:40px;text-align:center;width:100px}.dialog-item:first-child{background-color:#e68e50;margin-right:150px}.dialog.v-enter-active,.dialog.v-leave-active{transition:.3s}.dialog.v-enter-from,.dialog.v-leave-to{opacity:0;transform:translateX(-50%) scale(.95) translateY(-30px)}.dialog.v-enter-to,.dialog.v-leave-from{opacity:1;transform:translateX(-50%) translateY(0)}@media screen and (max-width:481px){.dialog-body{padding:20px 0}.dialog-message{font-size:15px;margin-bottom:15px}.dialog-item{height:30px;line-height:30px;width:70px}.dialog-item:first-child{margin-right:100px}}.editor-body{display:flex;flex-direction:column;margin:0 auto;max-width:840px;padding:60px 20px}.editor input,.editor textarea{background-color:#fff;border:none;border-radius:7px;color:#7b7b7b;outline:none}.editor-head{color:#7b7b7b;font-size:15px;margin-bottom:30px;margin-left:30px}.editor-title{font-size:25px;line-height:1;margin-bottom:40px;padding:30px 40px}.editor-content{background-color:#fff;border-radius:7px;height:50vh;margin-bottom:40px;padding:20px 40px}.editor-content-body{font-size:20px;height:100%;line-height:2;padding:10px 0;resize:none;width:100%}.editor-publish{background-color:#c4f7c1;border-radius:100px;color:#707070;cursor:pointer;font-size:15px;height:55px;line-height:55px;margin:0 auto 50px;position:relative;text-align:center;transition:.2s;width:210px}.editor-publish .check{display:block}.editor-publish .uncheck{display:none}.editor-publish:before{background-color:#fff;border-radius:100px;content:"";height:40px;left:9px;position:absolute;top:50%;transform:translateY(-50%);transition:.2s;width:40px}.editor-publish.uncheck{background-color:#707070;color:#fff}.editor-publish.uncheck .check{display:none}.editor-publish.uncheck .uncheck{display:block}.editor-publish.uncheck:before{left:161px}.editor-submit{background-color:transparent;border:1px solid #7b7b7b;border-radius:7px;box-sizing:border-box;color:#7b7b7b;cursor:pointer;font-size:20px;padding:20px 0;text-align:center;transition:.2s;width:100%}.editor-submit:hover{background-color:#f7c9a8;border-color:#f7c9a8;color:#fff}@media screen and (max-width:769px){.editor-body{padding:40px 30px}.editor-head{font-size:12px;margin-left:15px}.editor-title{font-size:20px;padding:20px 15px}.editor-content{font-size:15px;padding:15px}.editor-content-body{padding:5px 0}.editor-publish,.editor-submit{font-size:15px}}.mydiarylist-body{display:flex;height:calc(100vh - 80px);justify-content:center;margin:0 auto;max-width:750px}.mydiarylist .minimap{-ms-overflow-style:none;border-right:2px solid #7b7b7b;overflow-y:scroll;padding:30px 20px;scrollbar-width:none;width:115px}.mydiarylist .minimap::-webkit-scrollbar{display:none}.mydiarylist .minimap-item{margin-bottom:40px}.mydiarylist .minimap-month,.mydiarylist .minimap-year{color:#7b7b7b;display:block;font-size:20px;margin-bottom:10px;text-align:right}.mydiarylist .minimap-month{transition:.3s}.mydiarylist .minimap-month:hover{opacity:.5}.mydiarylist .list{-ms-overflow-style:none;overflow-y:scroll;padding:30px 20px;scrollbar-width:none;width:calc(100% - 115px)}.mydiarylist .list::-webkit-scrollbar{display:none}.mydiarylist .list-month{margin-bottom:60px}.mydiarylist .list-head{background-color:#f7c9a8;border-radius:7px;color:#fff7ef;font-size:20px;margin-bottom:15px;padding:12px 20px}.mydiarylist .list-day{margin:0 20px 15px;transition:.3s}.mydiarylist .list-day a{color:#7b7b7b;display:block;font-size:25px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%}.mydiarylist .list-day span{display:inline-block;width:80px}.mydiarylist .list-day:hover{opacity:.5}.mydiarylist .list-empty-message{color:#7b7b7b;font-size:25px}@media screen and (max-width:769px){.mydiarylist-body{height:calc(100vh - 50px)}.mydiarylist .minimap{border-right:1px solid #7b7b7b;padding:15px 0;width:70px}.mydiarylist .minimap-month,.mydiarylist .minimap-year{font-size:15px;padding-right:7px}.mydiarylist .list{padding:15px 10px;width:calc(100% - 70px)}.mydiarylist .list-month{margin-bottom:40px}.mydiarylist .list-head{font-size:12px;margin-bottom:10px;padding:5px 10px}.mydiarylist .list-day{margin:0 10px 15px}.mydiarylist .list-day a{font-size:20px}.mydiarylist .list-day span{width:50px}}
+html, body {
+  height: 100%;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+.header {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+.main-body {
+  background-color: #FFF7EF;
+  min-height: calc(100vh - 80px);
+}
+@media screen and (max-width: 769px) {
+  .main-body {
+    min-height: calc(100vh - 50px);
+  }
+}
+.diaryshow {
+  color: #7B7B7B;
+}
+.diaryshow-body {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 90px 20px;
+}
+.diaryshow-title, .diaryshow-date, .diaryshow-content {
+  margin-bottom: 40px;
+}
+.diaryshow-title {
+  font-size: 25px;
+  line-height: 1;
+}
+.diaryshow-date {
+  font-size: 15px;
+}
+.diaryshow-content {
+  font-size: 20px;
+  line-height: 2;
+}
+.diaryshow-content a {
+  color: #8FB8F7;
+}
+@media screen and (max-width: 769px) {
+  .diaryshow-body {
+    padding: 30px 20px;
+  }
+  .diaryshow-title {
+    font-size: 20px;
+  }
+  .diaryshow-date {
+    font-size: 12px;
+  }
+  .diaryshow-content {
+    font-size: 15px;
+  }
+}
+.showmenu {
+  position: fixed;
+  z-index: 10;
+  bottom: 50px;
+  right: 50%;
+  transform: translateX(50%) translateX(350px);
+}
+.showmenu-body {
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+.showmenu-item, .showmenu-head {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #F7C9A8;
+  border-radius: 100px;
+}
+.showmenu-item > a, .showmenu-item > p, .showmenu-head > a, .showmenu-head > p {
+  color: #FFF7EF;
+  font-size: 30px;
+  display: block;
+  line-height: 60px;
+  text-align: center;
+}
+.showmenu-item {
+  z-index: 1;
+  transition: 0.3s;
+}
+.showmenu-item:nth-child(3) {
+  transition-delay: 0.05s;
+}
+.showmenu-item:nth-child(4) {
+  transition-delay: 0.1s;
+}
+.showmenu-head {
+  z-index: 2;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+.opened .showmenu-item {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+.opened .showmenu-item:nth-child(2) {
+  transform: translateY(-200%);
+}
+.opened .showmenu-item:nth-child(3) {
+  transform: rotate(45deg) translateX(-200%) rotate(-45deg);
+}
+.opened .showmenu-item:nth-child(4) {
+  transform: translateX(-200%);
+}
+@media screen and (max-width: 1000px) {
+  .showmenu {
+    right: 20px;
+    bottom: 30px;
+    transform: none;
+  }
+}
+.diarymenu {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+}
+.diarymenu li {
+  list-style: none;
+}
+.diarymenu-body {
+  position: relative;
+}
+.diarymenu-head, .diarymenu-item {
+  height: 100px;
+  width: 100px;
+  background-color: #F7C9A8;
+  border-radius: 100px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+.diarymenu-head p, .diarymenu-head a, .diarymenu-item p, .diarymenu-item a {
+  line-height: 100px;
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+.diarymenu-item {
+  transition: 0.3s;
+  z-index: 0;
+}
+.diarymenu.opened .diarymenu-item {
+  bottom: 130px;
+}
+.diarymenu.opened .diarymenu-item:last-child {
+  bottom: 260px;
+}
+.dialog {
+  position: fixed;
+  z-index: 10;
+  top: 200px;
+  left: 50%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100vw;
+  transform: translateX(-50%);
+}
+.dialog-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 0;
+  min-height: 100px;
+  width: 100%;
+  background-color: #F7C9A8;
+  border-radius: 7px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+.dialog-message {
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #FFF7EF;
+  margin-bottom: 20px;
+}
+.dialog-items {
+  display: flex;
+  justify-content: center;
+}
+.dialog-item {
+  display: block;
+  height: 40px;
+  width: 100px;
+  background-color: #FF9C57;
+  border-radius: 7px;
+  font-size: 15px;
+  line-height: 40px;
+  color: #FFF7EF;
+  text-align: center;
+}
+.dialog-item:first-child {
+  margin-right: 150px;
+  background-color: #E68E50;
+}
+.dialog.v-enter-active, .dialog.v-leave-active {
+  transition: 0.3s;
+}
+.dialog.v-enter-from, .dialog.v-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.95) translateY(-30px);
+}
+.dialog.v-enter-to, .dialog.v-leave-from {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+}
+@media screen and (max-width: 481px) {
+  .dialog-body {
+    padding: 20px 0;
+  }
+  .dialog-message {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  .dialog-item {
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .dialog-item:first-child {
+    margin-right: 100px;
+  }
+}
+.editor-body {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.editor input, .editor textarea {
+  color: #7B7B7B;
+  border: none;
+  background-color: white;
+  border-radius: 7px;
+  outline: none;
+}
+.editor-head {
+  font-size: 15px;
+  color: #7B7B7B;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+.editor-title {
+  font-size: 25px;
+  line-height: 1;
+  margin-bottom: 40px;
+  padding: 30px 40px;
+}
+.editor-content {
+  height: 50vh;
+  background-color: white;
+  border-radius: 7px;
+  padding: 20px 40px;
+  margin-bottom: 40px;
+}
+.editor-content-body {
+  padding: 10px 0px;
+  height: 100%;
+  width: 100%;
+  resize: none;
+  font-size: 20px;
+  line-height: 2;
+}
+.editor-publish {
+  background-color: #C4F7C1;
+  width: 210px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  height: 55px;
+  border-radius: 100px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 15px;
+  color: #707070;
+  transition: 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.editor-publish .check {
+  display: block;
+}
+.editor-publish .uncheck {
+  display: none;
+}
+.editor-publish::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 9px;
+  height: 40px;
+  width: 40px;
+  transition: 0.2s;
+  background-color: white;
+  border-radius: 100px;
+  transform: translateY(-50%);
+}
+.editor-publish.uncheck {
+  background-color: #707070;
+  color: white;
+}
+.editor-publish.uncheck .check {
+  display: none;
+}
+.editor-publish.uncheck .uncheck {
+  display: block;
+}
+.editor-publish.uncheck::before {
+  left: 161px;
+}
+.editor-submit {
+  color: #7B7B7B;
+  width: 100%;
+  padding: 20px 0;
+  border-radius: 7px;
+  border: solid 1px #7B7B7B;
+  background-color: transparent;
+  font-size: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.editor-submit:hover {
+  background-color: #F7C9A8;
+  border-color: #F7C9A8;
+  color: white;
+}
+@media screen and (max-width: 769px) {
+  .editor-body {
+    padding: 40px 30px;
+  }
+  .editor-head {
+    margin-left: 15px;
+    font-size: 12px;
+  }
+  .editor-title {
+    font-size: 20px;
+    padding: 20px 15px;
+  }
+  .editor-content {
+    font-size: 15px;
+    padding: 15px 15px;
+  }
+  .editor-content-body {
+    padding: 5px 0px;
+  }
+  .editor-publish {
+    font-size: 15px;
+  }
+  .editor-submit {
+    font-size: 15px;
+  }
+}
+.mydiarylist-body {
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 80px);
+}
+.mydiarylist .minimap {
+  width: 115px;
+  border-right: 2px solid #7B7B7B;
+  padding: 30px 20px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.mydiarylist .minimap::-webkit-scrollbar {
+  display: none;
+}
+.mydiarylist .minimap-item {
+  margin-bottom: 40px;
+}
+.mydiarylist .minimap-year, .mydiarylist .minimap-month {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #7B7B7B;
+  text-align: right;
+}
+.mydiarylist .minimap-month {
+  transition: 0.3s;
+}
+.mydiarylist .minimap-month:hover {
+  opacity: 0.5;
+}
+.mydiarylist .list {
+  width: calc(100% - 115px);
+  padding: 30px 20px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.mydiarylist .list::-webkit-scrollbar {
+  display: none;
+}
+.mydiarylist .list-month {
+  margin-bottom: 60px;
+}
+.mydiarylist .list-head {
+  font-size: 20px;
+  color: #FFF7EF;
+  background-color: #F7C9A8;
+  padding: 12px 20px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+}
+.mydiarylist .list-day {
+  margin: 0 20px;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+.mydiarylist .list-day a {
+  font-size: 25px;
+  color: #7B7B7B;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+}
+.mydiarylist .list-day span {
+  width: 80px;
+  display: inline-block;
+}
+.mydiarylist .list-day:hover {
+  opacity: 0.5;
+}
+.mydiarylist .list-empty-message {
+  font-size: 25px;
+  color: #7B7B7B;
+}
+@media screen and (max-width: 769px) {
+  .mydiarylist-body {
+    height: calc(100vh - 50px);
+  }
+  .mydiarylist .minimap {
+    width: 70px;
+    padding: 15px 0;
+    border-right: 1px solid #7B7B7B;
+  }
+  .mydiarylist .minimap-year, .mydiarylist .minimap-month {
+    font-size: 15px;
+    padding-right: 7px;
+  }
+  .mydiarylist .list {
+    width: calc(100% - 70px);
+    padding: 15px 10px;
+  }
+  .mydiarylist .list-month {
+    margin-bottom: 40px;
+  }
+  .mydiarylist .list-head {
+    font-size: 12px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+  .mydiarylist .list-day {
+    margin: 0 10px;
+    margin-bottom: 15px;
+  }
+  .mydiarylist .list-day a {
+    font-size: 20px;
+  }
+  .mydiarylist .list-day span {
+    width: 50px;
+  }
+}

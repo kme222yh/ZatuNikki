@@ -67,6 +67,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'base_domain' => env('APP_BASE_DOMAIN', 'localhost'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -243,7 +245,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
-        
+
         'SEOMeta'       => Artesaos\SEOTools\Facades\SEOMeta::class,
         'OpenGraph'     => Artesaos\SEOTools\Facades\OpenGraph::class,
         'Twitter'       => Artesaos\SEOTools\Facades\TwitterCard::class,
