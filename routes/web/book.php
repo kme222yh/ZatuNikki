@@ -8,7 +8,7 @@ use \App\Http\Controllers\Book\ReadingController;
 
 Route::domain('book.'.config('app.base_domain'))->name('book.')->group(function () {
 
-    Route::get('/', [DefaultController::class, 'index'])->name('top');
+    Route::get('/', [DefaultController::class, 'index'])->name('home');
 
     Route::name('book.')->prefix('book')->middleware(['auth'])->group(function(){
         Route::get('list', [BookController::class, 'index'])->name('list');

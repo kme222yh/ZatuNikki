@@ -12,7 +12,12 @@
     </x-slot>
 
     <x-slot name="headerTitle">
-        reading <i class="fas fa-rss"></i>
+        @if($book->id)
+        {{ $book->title }}
+        @else
+        リスト
+        @endif
+         <i class="fas fa-rss"></i>
     </x-slot>
 
     <x-slot name="headerNavlink">

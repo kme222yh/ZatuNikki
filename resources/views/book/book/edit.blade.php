@@ -39,7 +39,7 @@
                 @endforeach
             </select>
             <div class="editor-content">
-                <textarea class="editor-content-body" name="discription" placeholder="本の詳細など" value="{{old('discription', $book->discription)}}"></textarea>
+                <textarea class="editor-content-body" name="discription" placeholder="本の詳細など" value="{{old('discription', $book->discription)}}" required></textarea>
             </div>
             <button class="editor-submit" type="submit" name="button">保存する</button>
         </div>

@@ -34,7 +34,7 @@
         <div class="editor-body">
             <input class="editor-title" type="text" name="title" placeholder="タイトルなど" required>
             <div class="editor-content">
-                <textarea class="editor-content-body" name="contents" placeholder="感想"></textarea>
+                <textarea class="editor-content-body" name="contents" placeholder="感想" required></textarea>
             </div>
             <button class="editor-submit" type="submit" name="button">保存する</button>
         </div>
