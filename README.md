@@ -1,10 +1,10 @@
 ざつにっき ZatuNikki
 -------
 
-* PHP 7.4
-* Laravel 8.x
+* PHP 8.2
+* Laravel 10.x
 * Vue.js 3.x
-* MySql 5.6
+* MariaDB 1:10.11.2+maria~ubu2204
 
 セットアップ
 -------------------
@@ -21,25 +21,19 @@ composer require encore/laravel-admin
 php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
 ```
 
+開発環境のセットアップ
+-------------------
+
+### 起動
+```
+docker-compose up -d
+```
+
 ### 開発するとき
 
 ```
 npm run watch
 php artisan serve --host 0.0.0.0
-```
-
-### DB更新するとき
-
-```
-php artisan make:migration add_{column_name}_to_{table_name}_table --table={table_name}
-https://qiita.com/usaginooheso/items/6f307a15b5f7d5dd981f
-```
-
-### DBリフレッシュするとき（シードも）
-
-```
-php artisan migrate:refresh --seed
-php artisan admin:install
 ```
 
 
@@ -60,4 +54,27 @@ php artisan admin:install
 
 npm install
 npm run dev
+```
+
+
+セットアップログ
+-------
+
+```
+# sailによる環境構築
+curl -s "https://laravel.build/zatunikki?php=82&with=mariadb,minio,mailpit" | bash
+
+# 起動確認
+./vendor/bin/sail up -d
+./vendor/bin/sail stop
+
+# sailコマンドのエイリアス設定(shell再起動)
+# 以下を~/.zshrcに追記
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
+# sailコマンド確認
+sail up
+
+# js,cssパッケージ準備
+sail yarn install
 ```
