@@ -75,6 +75,13 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 # sailコマンド確認
 sail up
 
+sail composer require laravel/breeze --dev
+sail artisan breeze:install
+sail artisan migrate
+sail npm install
+
 # js,cssパッケージ準備
-sail yarn install
+# https://laravel.com/docs/10.x/vite#vue
+sail npm install --save-dev @vitejs/plugin-vue
+sail npm install
 ```
