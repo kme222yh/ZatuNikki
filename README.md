@@ -6,61 +6,38 @@
 * Vue.js 3.x
 * MariaDB 1:10.11.2+maria~ubu2204
 
-セットアップ
--------------------
 
-```
-npm install
-npm run dev
-composer install
-php artisan migrate
-
-php artisan migrate:fresh --seed
-
-composer require encore/laravel-admin
-php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
-```
-
-開発環境のセットアップ
--------------------
 
 ### 起動
 ```
-docker-compose up -d
+sail up
+# または
+sail up -d
 ```
 
-### 開発するとき
-
+### 停止
 ```
-npm run watch
-php artisan serve --host 0.0.0.0
+sail stop
 ```
 
-
-### コマンドログ
-
+### viteサーバー起動
 ```
-php composer.phar require laravel/breeze --dev
-php artisan breeze:install
-
-php composer.phar require intervention/image
-
-php composer.pahr require artesaos/seotools
-php artisan vendor:publish --provider="Artesaos\SEOTools\Providers\SEOToolsServiceProvider"
-
-php composer require encore/laravel-admin
-php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
-php artisan admin:install
-
-npm install
-npm run dev
+sail npm run dev
 ```
+
 
 
 セットアップログ
 -------
 
 ```
+# 参考
+# https://zenn.dev/imah/articles/5d761f8f8c26fe
+# https://laravel.com/docs/10.x/sail
+# https://laravel.com/docs/10.x/vite
+# https://laravel.com/docs/10.x/starter-kits
+
+
 # sailによる環境構築
 curl -s "https://laravel.build/zatunikki?php=82&with=mariadb,minio,mailpit" | bash
 
@@ -75,13 +52,14 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 # sailコマンド確認
 sail up
 
+# 認証用パッケージ導入 breeze
+# 多分ここでtailwindCssが入ってる
 sail composer require laravel/breeze --dev
-sail artisan breeze:install
-sail artisan migrate
+sail art breeze:install
+sail art migrate
 sail npm install
 
-# js,cssパッケージ準備
-# https://laravel.com/docs/10.x/vite#vue
+# vue3準備
 sail npm install --save-dev @vitejs/plugin-vue
 sail npm install
 ```
